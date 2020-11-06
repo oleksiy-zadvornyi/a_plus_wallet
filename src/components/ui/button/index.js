@@ -1,15 +1,28 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import React from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
 
-import { base } from "./style";
+import {base} from './style';
 
-export default function Button({ style, title, color, contentContainerStyle }) {
+export default function Button({
+  style,
+  title,
+  color,
+  disabled,
+  contentContainerStyle,
+  titleStyle,
+  onPress,
+}) {
   return (
-    <View style={style}>
+    <View style={[base.w2, style]}>
       <TouchableOpacity
-        style={[base.w1, contentContainerStyle, { backgroundColor: color }]}
-      >
-        <Text style={base.t1}>{title}</Text>
+        style={[
+          base.w1,
+          contentContainerStyle,
+          color && !disabled && {backgroundColor: color},
+        ]}
+        disabled={disabled}
+        onPress={onPress}>
+        <Text style={[base.t1, titleStyle]}>{title}</Text>
       </TouchableOpacity>
     </View>
   );

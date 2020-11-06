@@ -1,6 +1,5 @@
-import { StyleSheet } from "react-native";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
-import dw from "@hooks/useDesignWidth";
+import {StyleSheet} from 'react-native';
+import dw from 'hooks/useDesignWidth';
 
 export const base = StyleSheet.create({
   flex: {
@@ -10,15 +9,16 @@ export const base = StyleSheet.create({
     flex: 1,
   },
   w2: {
-    fontFamily: "Roboto",
+    height: dw(61),
+    fontFamily: 'Roboto',
     fontSize: dw(14),
-    fontWeight: "400",
+    fontWeight: '400',
     lineHeight: dw(16),
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: dw(5),
-    padding: dw(22),
-    color: "#BAC1CF",
+    paddingHorizontal: dw(22),
+    color: '#BAC1CF',
   },
 });
 
-export default { base };
+export default {base};

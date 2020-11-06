@@ -20,6 +20,10 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "android": {
+      "package": "com.sarnado.aPlusWallet",
+      "versionCode": 1
+    },
     "androidStatusBar": {
       "translucent": false
     }

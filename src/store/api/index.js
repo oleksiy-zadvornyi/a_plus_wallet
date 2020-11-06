@@ -1,4 +1,4 @@
-export const URL = 'http://116.202.233.230:6321';
+export const URL = 'http://88.198.52.78:5000';
 
 export const axiosConfig = {
   headers: {

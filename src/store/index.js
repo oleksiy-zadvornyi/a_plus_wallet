@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import { PersistGate } from "redux-persist/integration/react";
-import { Provider } from "react-redux";
+import {PersistGate} from 'redux-persist/integration/react';
+import {Provider} from 'react-redux';
 
-import configureStore from "./config";
+import configureStore from './config';
 
-const { store, persistor } = configureStore();
+const {store, persistor} = configureStore();
 
-export default function ReduxView({ children }) {
+export default function ReduxView({children}) {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

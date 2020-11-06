@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { AppLoading } from "expo";
-import * as Font from "expo-font";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import React, {useEffect, useState} from 'react';
+import {AppLoading} from 'expo';
+import * as Font from 'expo-font';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-import NetworkIndicator from "@base/NetworkIndicator";
-import Toast from "@base/Toast";
-import Route from "@routes";
-import ReduxView from "@store";
+import NetworkIndicator from 'base/NetworkIndicator';
+import Toast from 'base/Toast';
+import Route from 'routes';
+import ReduxView from 'store';
+
+import moment from 'moment';
+import 'moment/locale/ru';
+moment.locale('ru');
 
 export default function App() {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
 
   async function loadFonts() {
     await Font.loadAsync({
-      Poppins: require("./assets/fonts/Poppins-Regular.ttf"),
-      Roboto: require("./assets/fonts/Roboto-Regular.ttf"),
+      Poppins: require('./assets/fonts/Poppins-Regular.ttf'),
+      Roboto: require('./assets/fonts/Roboto-Regular.ttf'),
     });
     setAssetsLoaded(true);
   }
@@ -24,7 +28,7 @@ export default function App() {
   });
 
   if (!assetsLoaded) {
-    return <AppLoading />;
+    return null;
   }
 
   return (

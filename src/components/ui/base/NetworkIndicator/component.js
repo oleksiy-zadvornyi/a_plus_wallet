@@ -1,11 +1,11 @@
-import React from "react";
-import { View, ActivityIndicator } from "react-native";
-import Modal from "react-native-modal";
+import React from 'react';
+import {View, ActivityIndicator} from 'react-native';
+import Modal from 'react-native-modal';
 
 // Style
-import styles from "./styles";
+import styles from './styles';
 
-export default function NetworkIndicator({ networkIndicator }) {
+export default function NetworkIndicator({networkIndicator}) {
   return (
     <Modal isVisible={networkIndicator.value} backdropOpacity={0.3}>
       <View style={styles.flex}>

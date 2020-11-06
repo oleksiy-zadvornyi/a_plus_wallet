@@ -13,7 +13,7 @@ const config = {
   key: 'root',
   storage,
   stateReconciler: autoMergeLevel2,
-  whitelist: ['user', 'profile'],
+  whitelist: ['user'],
 };
 
 const reducer = persistReducer(config, reducers);

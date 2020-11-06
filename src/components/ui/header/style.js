@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
-import dw from "@hooks/useDesignWidth";
+import {StyleSheet} from 'react-native';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import dw from 'hooks/useDesignWidth';
 
 export const base = StyleSheet.create({
   flex: {
@@ -9,20 +9,20 @@ export const base = StyleSheet.create({
   w1: {
     borderBottomLeftRadius: dw(30),
     borderBottomRightRadius: dw(30),
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   w2: {
     width: wp(100),
-    alignItems: "center",
+    alignItems: 'center',
   },
   t1: {
-    paddingBottom: dw(12),
-    fontFamily: "Poppins",
+    paddingVertical: dw(12),
+    fontFamily: 'Poppins',
     fontSize: dw(20),
-    fontWeight: "600",
-    color: "white",
+    fontWeight: '600',
+    color: 'white',
     lineHeight: dw(30),
   },
 });
 
-export default { base };
+export default {base};
