@@ -24,12 +24,10 @@ export default function Item({date, data}) {
     <View style={base.w1}>
       <Text style={base.t1}>{date}</Text>
       {data.map((e, i) => {
+        console.log(e);
         return (
-          <>
-            <TouchableOpacity
-              key={e.createdAt}
-              style={base.w2}
-              onPress={onPress}>
+          <View key={e}>
+            <TouchableOpacity style={base.w2} onPress={onPress}>
               <View style={base.w3}>
                 <Image
                   source={
@@ -52,7 +50,7 @@ export default function Item({date, data}) {
               </View>
             </TouchableOpacity>
             {i !== data.length - 1 && <View style={base.w6} />}
-          </>
+          </View>
         );
       })}
     </View>

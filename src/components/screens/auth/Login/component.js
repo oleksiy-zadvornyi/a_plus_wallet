@@ -47,6 +47,7 @@ export default function Login({fetchLogin, showToast}) {
           placeholder="ваш логин"
           returnKeyType="next"
           autoCapitalize="none"
+          value="witetigre"
           onSubmitEditing={() => refPassword.current.focus()}
         />
         <Input
@@ -55,6 +56,7 @@ export default function Login({fetchLogin, showToast}) {
           placeholder="ваш пароль"
           autoCapitalize="none"
           secureTextEntry
+          value="user3b560f"
           onSubmitEditing={done}
         />
         <Button

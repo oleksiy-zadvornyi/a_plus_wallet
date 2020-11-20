@@ -8,7 +8,7 @@ export default class Input extends React.Component {
     super(props);
 
     this.state = {
-      value: '',
+      value: props.value || '',
     };
   }
 
