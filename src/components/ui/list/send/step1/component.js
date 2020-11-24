@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
 import {FlatList, View, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -6,13 +7,27 @@ import {useNavigation} from '@react-navigation/native';
 import Item from 'item/receive';
 import Button from 'button';
 
+// Api
+import {getAccountAll} from 'store/api/account';
+
+// Actions
+import {showNetworkIndicator} from 'actions';
+
 // Style
 import {base} from './style';
 
-export default function List() {
-  const data = [1, 1, 1, 1];
+function List({access_token, showNI}) {
   const [itemIndex, setIndex] = useState(-1);
+  const [data, setData] = useState([]);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    showNI(true);
+    getAccountAll({access_token})
+      .then((result) => setData(result.data))
+      .catch((e) => console.log(e))
+      .finally(() => showNI(false));
+  }, [access_token, showNI]);
 
   const onChange = (ind) => {
     setIndex(ind);
@@ -54,3 +69,17 @@ export default function List() {
     </View>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    access_token: state.user.access_token,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    showNI: (data) => dispatch(showNetworkIndicator(data)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);

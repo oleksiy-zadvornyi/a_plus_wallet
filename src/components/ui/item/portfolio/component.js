@@ -24,9 +24,8 @@ export default function Item({date, data}) {
     <View style={base.w1}>
       <Text style={base.t1}>{date}</Text>
       {data.map((e, i) => {
-        console.log(e);
         return (
-          <View key={e}>
+          <View key={i}>
             <TouchableOpacity style={base.w2} onPress={onPress}>
               <View style={base.w3}>
                 <Image

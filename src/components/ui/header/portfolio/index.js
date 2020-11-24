@@ -48,7 +48,7 @@ function Header({user}) {
             </View>
             <View style={base.w4}>
               <Text style={base.t3}>
-                $ <Text style={base.t4}>45.500,12</Text>
+                $ <Text style={base.t4}>0</Text>
               </Text>
               <Text style={base.t5}>Ваш баланс</Text>
             </View>
