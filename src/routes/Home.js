@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
@@ -5,6 +6,11 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {fetchGetTransactionAll} from 'actions/transaction';
+import {fetchGetAccountAll} from 'actions/account';
+import {fetchGetCurrencyCryptoAllActive} from 'actions/currency';
+import {fetchUserAccountsBalance} from 'actions/user';
+
+import {URL} from 'store/api';
 
 import {TabBar} from './TabBar';
 import Portfolio from 'screens/home/Portfolio';
@@ -22,10 +28,12 @@ import Step5 from 'screens/home/Send/Step5';
 import ReceiveGenerate from 'screens/home/ReceiveGenerate';
 import Transaction from 'screens/home/Transaction';
 import CryptoWallet from 'screens/home/CryptoWallet';
+import ChoiceCrypto from 'screens/home/AddWallet/Step1';
+import CryptoName from 'screens/home/AddWallet/Step2';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const options = {title: null, gestureEnabled: false};
+const options = {title: null};
 
 function StackRoute() {
   return (
@@ -57,14 +65,52 @@ function StackRoute() {
         component={CryptoWallet}
         options={options}
       />
+      <Stack.Screen
+        name="ChoiceCrypto"
+        component={ChoiceCrypto}
+        options={options}
+      />
+      <Stack.Screen
+        name="CryptoName"
+        component={CryptoName}
+        options={options}
+      />
     </Stack.Navigator>
   );
 }
 
-function Home({access_token, getTransactionAll}) {
+function Home({
+  access_token,
+  userName,
+  getTransactionAll,
+  getAccountAll,
+  getCurrencyCryptoAllActive,
+  getUserAccountsBalance,
+}) {
   useEffect(() => {
     getTransactionAll({access_token});
-  });
+    getAccountAll({access_token});
+    getCurrencyCryptoAllActive({access_token});
+    getUserAccountsBalance({access_token});
+
+    const signalR = require('@microsoft/signalr');
+    const connection = new signalR.HubConnectionBuilder()
+      .withUrl(`${URL}/notificationuserhub?userId=${userName}`)
+      .build();
+
+    connection.on('ReloadBalance', () => {
+      getTransactionAll({access_token});
+      getAccountAll({access_token});
+      getCurrencyCryptoAllActive({access_token});
+      getUserAccountsBalance({access_token});
+    });
+
+    // connection.on('GetConnectionId', (data) => {
+    //   console.log(data);
+    // });
+
+    connection.start().then(() => connection.invoke('GetConnectionId'));
+  }, []);
 
   return (
     <NavigationContainer>
@@ -76,14 +122,16 @@ function Home({access_token, getTransactionAll}) {
 }
 
 function mapStateToProps(state) {
-  return {
-    access_token: state.user.access_token,
-  };
+  return state.user;
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getTransactionAll: (data) => dispatch(fetchGetTransactionAll(data)),
+    getAccountAll: (data) => dispatch(fetchGetAccountAll(data)),
+    getCurrencyCryptoAllActive: (data) =>
+      dispatch(fetchGetCurrencyCryptoAllActive(data)),
+    getUserAccountsBalance: (data) => dispatch(fetchUserAccountsBalance(data)),
   };
 }
 

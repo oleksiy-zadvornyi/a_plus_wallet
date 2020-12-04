@@ -1,5 +1,7 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import moment from 'moment';
+import {View, Text, Linking} from 'react-native';
+import {useRoute} from '@react-navigation/native';
 
 // Components
 import Wrap from 'base/Wrap';
@@ -10,33 +12,78 @@ import Button from 'button';
 import {base} from './style';
 
 export default function Transaction() {
-  return (
-    <Wrap titleView={<Header />}>
-      <View style={base.w1}>
-        <Text style={base.t1}>Аккаунт</Text>
-        <Text style={base.t2}>Bitcoin (local)</Text>
+  const route = useRoute();
+  const props = route.params?.props ?? null;
 
-        <Text style={base.t1}>Дата отправки</Text>
-        <Text style={base.t2}>10 октября, 2020 в 9:24 PM</Text>
+  if (props) {
+    const {
+      accountMask,
+      accountName,
+      createdAt,
+      node,
+      txId,
+      discriminator,
+      depositAddress,
+      withdrawalAddress,
+      fee,
+    } = props;
 
-        <Text style={base.t1}>Комиссия сети</Text>
-        <Text style={base.t2}>0.00026316 BTC = $2.97</Text>
+    function openLink() {
+      if (node === 'XRP') {
+        Linking.openURL(`https://xrpscan.com/tx/${txId}`);
+      } else {
+        Linking.openURL(`https://tokenview.com/ru/search/${txId}`);
+      }
+    }
 
-        <Text style={base.t1}>ID Транзакции</Text>
-        <Text style={base.t3}>
-          jhsdfgjfhfghjsdfgsjdhfgj3422jh2hgjh23h4gj2h3g4jgjhjjjg
-          2334hg546jhjhg5755k7jh678
-        </Text>
+    function getBool() {
+      if (discriminator === 'Withdrawal') {
+        return false;
+      }
+      return true;
+    }
 
-        <Text style={base.t1}>С кошелька</Text>
-        <Text style={base.t3}>32XrZRLqeu4GyziSxjF9UamNJtxCeHwAdZ</Text>
+    return (
+      <Wrap titleView={<Header {...props} />}>
+        <View style={base.w1}>
+          <Text style={base.t1}>Аккаунт</Text>
+          <Text style={base.t2}>{accountMask || accountName}</Text>
 
-        <Text style={base.t1}>На кошелек</Text>
-        <Text style={base.t3}>32XrZRLqeu4GyziSxjF9UamNJtxCeHwAdZ</Text>
-      </View>
-      <View style={base.w2}>
-        <Button title="View in explorer" color="#009F06" />
-      </View>
-    </Wrap>
-  );
+          <Text style={base.t1}>Дата отправки</Text>
+          <Text style={base.t2}>
+            {moment(createdAt).format('DD MMMM, YYYY в h:mm A')}
+          </Text>
+
+          <Text style={base.t1}>Комиссия сети</Text>
+          <Text style={base.t2}>
+            {fee} {node}
+          </Text>
+
+          <Text style={base.t1}>ID Транзакции</Text>
+          <Text style={base.t3}>
+            {txId || 'Транзакция пока что не создана в сети'}
+          </Text>
+
+          <Text style={base.t1}>С кошелька</Text>
+          <Text style={base.t3}>
+            {getBool() ? depositAddress : accountMask}
+          </Text>
+
+          <Text style={base.t1}>На кошелек</Text>
+          <Text style={base.t3}>
+            {getBool() ? accountMask : withdrawalAddress}
+          </Text>
+        </View>
+        {txId && (
+          <View style={base.w2}>
+            <Button
+              title="View in explorer"
+              color="#009F06"
+              onPress={openLink}
+            />
+          </View>
+        )}
+      </Wrap>
+    );
+  }
 }

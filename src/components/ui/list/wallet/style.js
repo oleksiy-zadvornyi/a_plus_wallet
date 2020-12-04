@@ -6,7 +6,7 @@ export const base = StyleSheet.create({
     flex: 1,
   },
   w1: {
-    marginTop: dw(31),
+    paddingTop: dw(31),
   },
   w2: {
     height: dw(4),

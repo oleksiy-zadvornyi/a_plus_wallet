@@ -31,11 +31,10 @@ export const base = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'flex-start',
     paddingHorizontal: dw(28),
-    paddingTop: dw(28),
   },
   w4: {
     alignItems: 'center',
-    paddingVertical: dw(42),
+    paddingBottom: dw(22),
     marginBottom: dw(36),
   },
   w5: {
@@ -87,7 +86,6 @@ export const base = StyleSheet.create({
     fontSize: dw(14),
     fontWeight: '500',
     color: 'rgba(255, 255, 255, 0.6)',
-    lineHeight: dw(21),
   },
   t6: {
     fontFamily: 'Poppins',

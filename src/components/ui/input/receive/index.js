@@ -1,6 +1,5 @@
 import React from 'react';
-import {TextInput, View} from 'react-native';
-import Button from 'button';
+import {TextInput} from 'react-native';
 
 import {base} from './style';
 
@@ -24,8 +23,8 @@ export default class Input extends React.Component {
   }
 
   render() {
-    const {value} = this.state;
     const {
+      value,
       placeholder,
       keyboardType,
       returnKeyType,

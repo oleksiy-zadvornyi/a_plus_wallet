@@ -9,11 +9,26 @@ export default class Input extends React.Component {
     super(props);
 
     this.state = {
-      value: '',
+      value: props.value || '',
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value) {
+      this.setState({
+        value: this.props.value,
+      });
+    }
+  }
+
   onChangeText = (value) => this.setState({value});
+
+  onChange = () => {
+    const {value, onSubmitEditing} = this.props;
+    if (value !== this.state.value) {
+      onSubmitEditing(this.state.value);
+    }
+  };
 
   focus = () => this.input.focus();
 
@@ -27,12 +42,11 @@ export default class Input extends React.Component {
     const {value} = this.state;
     const {
       style,
+      editable,
       placeholder,
       keyboardType,
-      returnKeyType,
       autoCapitalize,
       secureTextEntry,
-      onSubmitEditing,
       button,
       buttonTitle,
       buttonPress,
@@ -43,15 +57,16 @@ export default class Input extends React.Component {
         <TextInput
           ref={this.ref}
           style={base.w2}
+          editable={editable}
           placeholder={placeholder}
           placeholderTextColor="#BAC1CF"
           keyboardType={keyboardType || 'default'}
-          returnKeyType={returnKeyType || 'done'}
+          returnKeyType="done"
           autoCapitalize={autoCapitalize || 'sentences'}
           secureTextEntry={secureTextEntry}
           value={value}
           onChangeText={this.onChangeText}
-          onSubmitEditing={onSubmitEditing}
+          onSubmitEditing={this.onChange}
         />
         {button && (
           <Button

@@ -7,7 +7,7 @@ export const base = StyleSheet.create({
     flex: 1,
   },
   w1: {
-    flex: 1,
+    // flex: 1,
     width: wp(100),
     fontFamily: 'Roboto',
     fontSize: dw(18),

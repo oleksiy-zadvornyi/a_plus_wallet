@@ -5,6 +5,8 @@ import networkIndicator from './networkIndicator';
 
 import user from './user';
 import transactions from './transactions';
+import account from './account';
+import cryptoWallets from './cryptoWallets';
 
 export default combineReducers({
   toast,
@@ -12,4 +14,6 @@ export default combineReducers({
 
   user,
   transactions,
+  account,
+  cryptoWallets,
 });

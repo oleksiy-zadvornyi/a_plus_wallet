@@ -12,23 +12,28 @@ import dw from 'hooks/useDesignWidth';
 // Style
 import {base} from './style';
 
-export default function Item() {
+export default function Item(props) {
+  const {accountName, maskName, balance, isActive, eqvBalance, node} = props;
   const navigation = useNavigation();
 
   const onPress = () => {
-    navigation.navigate('CryptoWallet');
+    navigation.navigate('Portfolio', {props});
   };
 
   return (
     <TouchableOpacity style={base.w1} onPress={onPress}>
-      <Image source={Images.btc} width={dw(34)} />
+      <Image source={Images[node]} width={dw(34)} />
       <View style={base.w2}>
-        <Text style={base.t1}>Bitcoin (legal)</Text>
-        <Text style={base.t2}>Активен</Text>
+        <Text style={base.t1}>{maskName || accountName}</Text>
+        <Text style={base.t2}>{isActive ? 'Активен' : 'Не активен'}</Text>
       </View>
       <View style={base.w3}>
-        <Text style={base.t3}>0.09625 BTC</Text>
-        <Text style={[base.t3, base.t4]}>$1,087.18</Text>
+        <Text style={base.t3}>
+          {balance} {node}
+        </Text>
+        <Text style={[base.t3, base.t4]}>
+          ${eqvBalance.find((e) => e.currencieCode === 'USD').balance}
+        </Text>
       </View>
     </TouchableOpacity>
   );

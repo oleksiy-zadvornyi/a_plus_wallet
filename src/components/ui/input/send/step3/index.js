@@ -42,7 +42,7 @@ export default class Input extends React.Component {
           style={base.w2}
           placeholder={placeholder}
           placeholderTextColor="white"
-          keyboardType={keyboardType || 'default'}
+          keyboardType="numeric"
           returnKeyType={returnKeyType || 'done'}
           autoCapitalize={autoCapitalize || 'sentences'}
           secureTextEntry={secureTextEntry}

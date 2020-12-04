@@ -1,10 +1,24 @@
-const initialState = {};
+const initialState = {
+  balance: [],
+};
 
 export default function initReducer(state = initialState, action) {
   switch (action.type) {
     case 'reduceSignup':
     case 'reduceLogin': {
-      return action.data;
+      return {...state, ...action.data};
+    }
+    case 'reduceFirstName': {
+      return {...state, firstName: action.data};
+    }
+    case 'reduceSecondName': {
+      return {...state, secondName: action.data};
+    }
+    case 'reduceVerifyEmail': {
+      return {...state, isEmailVerified: true};
+    }
+    case 'reduceBalance': {
+      return {...state, balance: action.data};
     }
     case 'fetchLogout': {
       return initialState;

@@ -1,34 +1,98 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useState, useEffect} from 'react';
+import {View, Text, Clipboard, Share} from 'react-native';
+import QRCode from 'react-native-qrcode-svg';
+import {useRoute} from '@react-navigation/native';
 
 // Components
 import Wrap from 'base/Wrap';
 import Header from 'header/receive';
 import Input from 'input/receive';
 import Button from 'button';
+import ButtonIcon from 'button/icon';
+
+// Helpers
+import * as Images from 'helpers/images';
+
+// Api
+import {getDepositCreate} from 'store/api/deposit';
 
 // Style
 import {base} from './style';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-export default function ReceiveGenerate() {
+export default function ReceiveGenerate(props) {
+  const [hash, setHash] = useState();
+  const route = useRoute();
+  const {access_token, showNI} = props;
+
+  useEffect(() => {
+    const params = route.params?.props ?? null;
+    if (params) {
+      setHash(params.wallets[0]);
+    }
+  }, []);
+
+  function depositCreate() {
+    const params = route.params?.props ?? null;
+    if (params) {
+      const {accountName, node} = params;
+      const query = {accountName, node};
+      showNI(true);
+      getDepositCreate({access_token, query})
+        .then((result) => setHash(result.data))
+        .catch((e) => console.log(e.response))
+        .finally(() => showNI(false));
+    }
+  }
+
+  function onPressClipboard() {
+    if (hash) {
+      Clipboard.setString(hash.address);
+    }
+  }
+
+  function onShare() {
+    Share.share({
+      message: hash.address,
+    });
+  }
+
   return (
-    <Wrap noScroll titleView={<Header />}>
+    <Wrap titleView={<Header />}>
       <Text style={base.t1}>
         Скопируйте адрес или, при необходимости,{'\n'}
         сгенерируйте новый и отправьте{'\n'}
         его плательщику.
       </Text>
       <View style={base.w1}>
-        <Input />
+        {hash && (
+          <View style={base.w5}>
+            <QRCode size={wp(60)} value={hash.address} />
+          </View>
+        )}
+        <Input value={hash && hash.address} />
         <View style={base.w2}>
           <Button
             style={base.w3}
             title="Сгенерировать новый адрес"
             color="#009F06"
+            onPress={depositCreate}
           />
           <View style={base.w4} />
-          <Button title="Скопировать" color="#1B48BC" />
+          <Button
+            title="Скопировать"
+            color="#1B48BC"
+            onPress={onPressClipboard}
+          />
         </View>
+        <ButtonIcon
+          style={base.w6}
+          title="Отправить через мессенджер"
+          color="#009F06"
+          icon={Images.arrowUp}
+          onPress={onShare}
+        />
       </View>
     </Wrap>
   );

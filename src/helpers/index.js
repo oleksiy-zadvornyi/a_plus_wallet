@@ -35,3 +35,44 @@ export function groupByKey(array, key) {
     });
   }, {});
 }
+
+export function sortByAZ(a, b) {
+  const nameA = a.maskName || a.accountName;
+  const nameB = b.maskName || b.accountName;
+  if (nameA > nameB) {
+    return 1;
+  }
+  if (nameA < nameB) {
+    return -1;
+  }
+  return 0;
+}
+export function sortByZA(a, b) {
+  const nameA = a.maskName || a.accountName;
+  const nameB = b.maskName || b.accountName;
+  if (nameA > nameB) {
+    return -1;
+  }
+  if (nameA < nameB) {
+    return 1;
+  }
+  return 0;
+}
+export function sortByMaxBalance(a, b) {
+  if (a.balance > b.balance) {
+    return 1;
+  }
+  if (a.balance < b.balance) {
+    return -1;
+  }
+  return 0;
+}
+export function sortByMinBalance(a, b) {
+  if (a.balance > b.balance) {
+    return -1;
+  }
+  if (a.balance < b.balance) {
+    return 1;
+  }
+  return 0;
+}

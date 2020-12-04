@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, TouchableOpacity, Text, StyleSheet, Platform} from 'react-native';
 import Image from 'react-native-scalable-image';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+
+import ModalTransfer from 'modal/transfer';
 
 // Helpers
 import * as Images from 'helpers/images';
@@ -10,6 +12,7 @@ import * as Images from 'helpers/images';
 import dw from 'hooks/useDesignWidth';
 
 export function TabBar({navigation}) {
+  const [show, setShow] = useState(false);
   const routes = [
     {
       key: 'summary',
@@ -24,7 +27,7 @@ export function TabBar({navigation}) {
     {
       key: 'transfer',
       name: 'Трансфер',
-      onPress: 'Wallets',
+      onPress: 'ModalTransfer',
     },
     {
       key: 'settings',
@@ -38,11 +41,21 @@ export function TabBar({navigation}) {
     },
   ];
 
+  function onPressClose() {
+    setShow(false);
+  }
+
   return (
     <View style={base.flexDirection}>
       {routes.map((route) => {
         const onPress = () => {
-          navigation.navigate(route.onPress);
+          if (route.onPress === 'ModalTransfer') {
+            setShow(true);
+          } else if (route.onPress === 'Portfolio') {
+            navigation.navigate(route.onPress, {props: null});
+          } else {
+            navigation.navigate(route.onPress);
+          }
         };
 
         return (
@@ -52,6 +65,11 @@ export function TabBar({navigation}) {
           </TouchableOpacity>
         );
       })}
+      <ModalTransfer
+        navigation={navigation}
+        isVisible={show}
+        onPressClose={onPressClose}
+      />
     </View>
   );
 }

@@ -45,7 +45,7 @@ export default function Registration({fetchSignup, showToast}) {
       return;
     }
 
-    fetchSignup({userName, password, email});
+    // fetchSignup({userName, password, email});
   }
 
   return (
@@ -80,7 +80,8 @@ export default function Registration({fetchSignup, showToast}) {
           returnKeyType="next"
           autoCapitalize="none"
           secureTextEntry
-          onSubmitEditing={() => refRePassword.current.focus()}
+          textContentType="password"
+          // onSubmitEditing={() => refPassword.current.focus()}
         />
         <Input
           ref={refRePassword}
@@ -88,6 +89,7 @@ export default function Registration({fetchSignup, showToast}) {
           placeholder="повторите пароль"
           autoCapitalize="none"
           secureTextEntry
+          textContentType="oneTimeCode"
           onSubmitEditing={done}
         />
         <Button

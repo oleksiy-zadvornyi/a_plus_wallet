@@ -11,6 +11,12 @@ export const qrCode = require('./direction/qr_code.png');
 export const wallet = require('./direction/wallet.png');
 export const arrowLeft = require('./direction/arrow_left.png');
 export const refresh = require('./direction/refresh.png');
+export const ok = require('./direction/ok.png');
+export const finder = require('./direction/finder.png');
+export const cart = require('./direction/cart.png');
+export const swap = require('./direction/swap.png');
+export const arrowRight = require('./direction/arrow_right.png');
+export const arrowUp = require('./direction/arrow_up.png');
 
 export const flagRussia = require('./direction/flag_russia.png');
 
@@ -26,8 +32,8 @@ export const emailLock = require('./direction/email_lock.png');
 export const verifyPhone = require('./direction/verify_phone.png');
 export const light = require('./direction/light.png');
 
-export const btc = require('./direction/btc.png');
-export const etc = require('./direction/etc.png');
+export const BTC = require('./direction/btc.png');
+export const ETH = require('./direction/eth.png');
 export const xrp = require('./direction/xrp.png');
 export const usdt = require('./direction/usdt.png');
 

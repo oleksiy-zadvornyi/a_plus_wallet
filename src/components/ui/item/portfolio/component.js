@@ -12,40 +12,52 @@ import dw from 'hooks/useDesignWidth';
 
 // Style
 import {base} from './style';
+import {get} from 'react-native/Libraries/Utilities/PixelRatio';
 
 export default function Item({date, data}) {
   const navigation = useNavigation();
 
-  const onPress = () => {
-    navigation.navigate('Transaction');
-  };
+  function getBool(e) {
+    if (e.discriminator === 'Withdrawal') {
+      return false;
+    }
+    return true;
+  }
 
   return (
     <View style={base.w1}>
       <Text style={base.t1}>{date}</Text>
       {data.map((e, i) => {
+        function onPress() {
+          navigation.navigate('Transaction', {props: e});
+        }
+
         return (
           <View key={i}>
             <TouchableOpacity style={base.w2} onPress={onPress}>
               <View style={base.w3}>
                 <Image
                   source={
-                    e.discriminator === 'Withdrawal'
-                      ? Images.transactionUp
-                      : Images.transactionDown
+                    getBool(e) ? Images.transactionDown : Images.transactionUp
                   }
                   width={dw(15.6)}
                 />
               </View>
               <View style={base.w4}>
-                <Text style={base.t2}>Bitcoin (legal)</Text>
+                <Text style={base.t2}>{e.accountMask || e.accountName}</Text>
                 <Text style={base.t3}>
-                  Получено в {moment(e.createdAt).format('HH:mm')}
+                  {getBool(e) ? 'Получено' : 'Отправлено'} в{' '}
+                  {moment(e.createdAt).format('HH:mm')}
                 </Text>
               </View>
               <View style={base.w5}>
-                <Text style={[base.t4]}>-0.09625 {e.node}</Text>
-                <Text style={[base.t4, base.t6]}>+$1,087.18</Text>
+                <Text style={[base.t4]}>
+                  {getBool(e) ? '+' : '-'}
+                  {e.amount} {e.node}
+                </Text>
+                {/* <Text style={[base.t4, base.t6]}>
+                  {getBool(e) ? '+' : '-'}$0
+                </Text> */}
               </View>
             </TouchableOpacity>
             {i !== data.length - 1 && <View style={base.w6} />}

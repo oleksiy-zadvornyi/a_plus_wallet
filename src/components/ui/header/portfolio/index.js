@@ -13,7 +13,7 @@ import dw from 'hooks/useDesignWidth';
 // Style
 import {base} from './style';
 
-function Header({user}) {
+function Header({user, wallet}) {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
 
@@ -24,6 +24,21 @@ function Header({user}) {
   const onPressSend = () => {
     navigation.navigate('Step1');
   };
+
+  function renderBalance() {
+    if (wallet) {
+      return (
+        wallet.eqvBalance.find((e) => e.currencieCode === 'USD').balance || '0'
+      );
+    }
+
+    const balance = user.balance.find((e) => e.currencyCode === 'USD');
+    if (balance) {
+      return balance.amount.toFixed(2);
+    }
+
+    return '0';
+  }
 
   return (
     <View style={base.w7}>
@@ -37,18 +52,16 @@ function Header({user}) {
             <View style={base.w3}>
               <View style={base.flex}>
                 <Text style={base.t1}>Доброе утро</Text>
-                <Text style={base.t2}>
-                  {user.firstName} {user.secondName}
-                </Text>
+                <Text style={base.t2}>{user.userName}</Text>
               </View>
-              <View>
+              {/* <View>
                 <Image source={Images.bell} width={dw(22)} />
                 <View style={base.dot} />
-              </View>
+              </View> */}
             </View>
             <View style={base.w4}>
               <Text style={base.t3}>
-                $ <Text style={base.t4}>0</Text>
+                $ <Text style={base.t4}>{renderBalance()}</Text>
               </Text>
               <Text style={base.t5}>Ваш баланс</Text>
             </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import Image from 'react-native-scalable-image';
 import {Switch} from 'react-native-switch';
 
@@ -12,7 +12,7 @@ import dw from 'hooks/useDesignWidth';
 // Style
 import {base} from './style';
 
-export default function Item({icon, title, type, data}) {
+export default function Item({icon, title, type, data, onPress}) {
   const renderType = () => {
     switch (type) {
       case 'text': {
@@ -56,7 +56,7 @@ export default function Item({icon, title, type, data}) {
   };
 
   return (
-    <View style={base.w1}>
+    <TouchableOpacity style={base.w1} onPress={onPress}>
       {type === 'button' ? (
         <View style={base.w4}>
           <Image source={icon} width={dw(18)} />
@@ -67,6 +67,6 @@ export default function Item({icon, title, type, data}) {
 
       <Text style={base.t1}>{title}</Text>
       {renderType()}
-    </View>
+    </TouchableOpacity>
   );
 }

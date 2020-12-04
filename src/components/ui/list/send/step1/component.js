@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {FlatList, View, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
@@ -7,33 +7,18 @@ import {useNavigation} from '@react-navigation/native';
 import Item from 'item/receive';
 import Button from 'button';
 
-// Api
-import {getAccountAll} from 'store/api/account';
-
-// Actions
-import {showNetworkIndicator} from 'actions';
-
 // Style
 import {base} from './style';
 
-function List({access_token, showNI}) {
+function List({account}) {
   const [itemIndex, setIndex] = useState(-1);
-  const [data, setData] = useState([]);
   const navigation = useNavigation();
-
-  useEffect(() => {
-    showNI(true);
-    getAccountAll({access_token})
-      .then((result) => setData(result.data))
-      .catch((e) => console.log(e))
-      .finally(() => showNI(false));
-  }, [access_token, showNI]);
 
   const onChange = (ind) => {
     setIndex(ind);
   };
   const onPress = () => {
-    navigation.navigate('Step2');
+    navigation.navigate('Step2', {props: account[itemIndex]});
   };
 
   const renderItem = ({item, index}) => (
@@ -49,13 +34,13 @@ function List({access_token, showNI}) {
   return (
     <View style={base.w1}>
       <Text style={base.t1}>
-        Выберите кошелек с которого{'\n'}
-        будем совершать отправку.
+        Выберите кошелек на котором{'\n'}
+        мы будем генерировать адрес.
       </Text>
       <FlatList
-        data={data}
+        data={account}
         renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item) => item.id.toString()}
         ItemSeparatorComponent={renderSeparatorComponent}
       />
 
@@ -72,14 +57,8 @@ function List({access_token, showNI}) {
 
 function mapStateToProps(state) {
   return {
-    access_token: state.user.access_token,
+    account: state.account.filter((e) => e.isActive && e.balance > 0),
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    showNI: (data) => dispatch(showNetworkIndicator(data)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default connect(mapStateToProps, null)(List);

@@ -8,13 +8,12 @@ export const base = StyleSheet.create({
   },
   w1: {
     width: wp(100),
+    alignItems: 'center',
     paddingHorizontal: dw(14),
-    paddingTop: dw(88),
   },
   w2: {
-    flex: 1,
     flexDirection: 'row',
-    paddingTop: dw(25),
+    paddingVertical: dw(25),
   },
   w3: {
     flex: 1,
@@ -22,6 +21,14 @@ export const base = StyleSheet.create({
   },
   w4: {
     width: dw(6),
+  },
+  w5: {
+    marginBottom: dw(20),
+    borderColor: 'grey',
+    borderWidth: dw(4),
+  },
+  w6: {
+    marginBottom: dw(25),
   },
   t1: {
     textAlign: 'center',

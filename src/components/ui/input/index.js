@@ -31,6 +31,7 @@ export default class Input extends React.Component {
       returnKeyType,
       autoCapitalize,
       secureTextEntry,
+      textContentType,
       onSubmitEditing,
     } = this.props;
 
@@ -45,6 +46,11 @@ export default class Input extends React.Component {
           returnKeyType={returnKeyType || 'done'}
           autoCapitalize={autoCapitalize || 'sentences'}
           secureTextEntry={secureTextEntry}
+          passwordRules={
+            secureTextEntry &&
+            'required: lower; required: upper; required: digit; required: [-]; minlength: 1;'
+          }
+          textContentType={textContentType || 'none'}
           value={value}
           onChangeText={this.onChangeText}
           onSubmitEditing={onSubmitEditing}

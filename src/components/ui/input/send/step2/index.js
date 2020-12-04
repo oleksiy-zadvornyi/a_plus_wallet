@@ -43,7 +43,7 @@ export default class Input extends React.Component {
         returnKeyType={returnKeyType || 'done'}
         autoCapitalize={autoCapitalize || 'sentences'}
         secureTextEntry={secureTextEntry}
-        value={value}
+        value={this.props.value || value}
         multiline
         onChangeText={this.onChangeText}
         onSubmitEditing={onSubmitEditing}
