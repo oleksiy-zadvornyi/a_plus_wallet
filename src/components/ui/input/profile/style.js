@@ -6,7 +6,7 @@ export const base = StyleSheet.create({
     flex: 1,
   },
   w1: {
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#2F406D',

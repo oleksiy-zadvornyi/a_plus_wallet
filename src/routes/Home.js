@@ -92,24 +92,30 @@ function Home({
     getAccountAll({access_token});
     getCurrencyCryptoAllActive({access_token});
     getUserAccountsBalance({access_token});
-
-    const signalR = require('@microsoft/signalr');
-    const connection = new signalR.HubConnectionBuilder()
-      .withUrl(`${URL}/notificationuserhub?userId=${userName}`)
-      .build();
-
-    connection.on('ReloadBalance', () => {
+    setInterval(() => {
       getTransactionAll({access_token});
       getAccountAll({access_token});
       getCurrencyCryptoAllActive({access_token});
       getUserAccountsBalance({access_token});
-    });
+    }, 1000 * 60);
 
-    // connection.on('GetConnectionId', (data) => {
-    //   console.log(data);
+    // const signalR = require('@microsoft/signalr');
+    // const connection = new signalR.HubConnectionBuilder()
+    //   .withUrl(`${URL}/notificationuserhub?userId=${userName}`)
+    //   .build();
+
+    // connection.on('ReloadBalance', () => {
+    //   getTransactionAll({access_token});
+    //   getAccountAll({access_token});
+    //   getCurrencyCryptoAllActive({access_token});
+    //   getUserAccountsBalance({access_token});
     // });
 
-    connection.start().then(() => connection.invoke('GetConnectionId'));
+    // // connection.on('GetConnectionId', (data) => {
+    // //   console.log(data);
+    // // });
+
+    // connection.start().then(() => connection.invoke('GetConnectionId'));
   }, []);
 
   return (

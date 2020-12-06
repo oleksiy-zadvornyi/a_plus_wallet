@@ -12,7 +12,12 @@ import Button from 'button';
 // Style
 import {base} from './style';
 
-export default function CryptoName({id, access_token, postAccountCreate}) {
+export default function CryptoName({
+  id,
+  access_token,
+  postAccountCreate,
+  showToast,
+}) {
   const refName = useRef(null);
   const route = useRoute();
   const navigation = useNavigation();
@@ -20,6 +25,12 @@ export default function CryptoName({id, access_token, postAccountCreate}) {
   function done() {
     const props = route.params?.props ?? null;
     if (props) {
+      const accountMask = refName.current.getValue();
+      if (accountMask.length === 0) {
+        showToast('Введите название кошелька');
+        return;
+      }
+
       const query = {
         accountName: md5(`${id}_${moment().format('X')}`).substr(0, 18),
         node: props.node,

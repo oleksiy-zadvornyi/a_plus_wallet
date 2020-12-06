@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import Modal from 'react-native-modal';
 
 // Components
@@ -41,7 +41,9 @@ export default function Password({
     getUserChangePassword({access_token, query})
       .then(() => {
         onPressClose();
-        showToast('Пароль поменян');
+        setTimeout(() => {
+          Alert.alert('', 'Пароль от вашего аккаунта был успешно изменен');
+        }, 1000);
       })
       .catch((e) => showToast(e.response.data.errorText))
       .finally(() => showNI(false));

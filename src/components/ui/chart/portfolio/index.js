@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
+import {Text} from 'react-native';
 import {connect} from 'react-redux';
 import moment from 'moment';
 import {View} from 'react-native';
@@ -18,8 +19,8 @@ import {getUserBalancePeriod} from 'store/api/user';
 // Style
 import {base} from './style';
 
-function Chart({user, cryptoWallets}) {
-  const {wallet, access_token} = user;
+function Chart({wallet, user, cryptoWallets}) {
+  const {access_token} = user;
   const [scale] = useState('W');
   const [cryptoCurrency, setCryptoCurrency] = useState('BTC');
   const [data, setData] = useState([]);
@@ -82,28 +83,34 @@ function Chart({user, cryptoWallets}) {
   if (data.length > 0) {
     return (
       <View>
+        {wallet && <Text style={base.t2}>{wallet.maskName}</Text>}
         <LineChart
           data={getData()}
           width={wp(100) - dw(8)}
           height={dw(200)}
           withDots={false}
-          withShadow={false}
+          // withShadow={false}
           segments={3}
           chartConfig={{
-            backgroundColor: '#141D33',
             backgroundGradientFrom: '#141D33',
             backgroundGradientTo: '#141D33',
+            fillShadowGradient: 'rgb(113, 184, 209)',
+            fillShadowGradientOpacity: 1,
+            // useShadowColorFromDataset: true,
             color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           }}
         />
         <View style={base.w1}>
-          <Button
-            style={base.w2}
-            title="Криптовалюта"
-            color="#009F06"
-            onPress={() => setCrypto(true)}
-          />
+          {!wallet && (
+            <Button
+              style={base.w2}
+              title="Криптовалюта"
+              color="#009F06"
+              onPress={() => setCrypto(true)}
+            />
+          )}
+
           {/* <Button
             style={base.w2}
             title="Период"

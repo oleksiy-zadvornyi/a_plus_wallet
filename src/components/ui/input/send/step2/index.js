@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextInput} from 'react-native';
+import {View, TextInput} from 'react-native';
 
 import {base} from './style';
 
@@ -44,7 +44,6 @@ export default class Input extends React.Component {
         autoCapitalize={autoCapitalize || 'sentences'}
         secureTextEntry={secureTextEntry}
         value={this.props.value || value}
-        multiline
         onChangeText={this.onChangeText}
         onSubmitEditing={onSubmitEditing}
       />

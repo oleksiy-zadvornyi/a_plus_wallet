@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "APlusWallet",
+    "name": "APlus Wallet",
     "slug": "APlusWallet",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,13 +15,15 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sarnado.apluswallet",
+      "buildNumber": "1.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.sarnado.aPlusWallet",
+      "package": "com.sarnado.apluswallet",
       "versionCode": 1
     },
     "androidStatusBar": {

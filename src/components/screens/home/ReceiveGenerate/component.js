@@ -59,7 +59,7 @@ export default function ReceiveGenerate(props) {
   }
 
   return (
-    <Wrap titleView={<Header />}>
+    <Wrap scroll titleView={<Header />}>
       <Text style={base.t1}>
         Скопируйте адрес или, при необходимости,{'\n'}
         сгенерируйте новый и отправьте{'\n'}

@@ -23,6 +23,14 @@ export const base = StyleSheet.create({
     fontWeight: '700',
     color: 'black',
   },
+  t2: {
+    alignSelf: 'center',
+    fontFamily: 'Roboto',
+    fontSize: dw(18),
+    fontWeight: '700',
+    color: 'white',
+    paddingBottom: dw(8),
+  },
 });
 
 export default {base};

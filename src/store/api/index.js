@@ -1,4 +1,5 @@
-export const URL = 'http://88.198.52.78:5000';
+// export const URL = 'http://88.198.52.78:5000';
+export const URL = 'https://api.bigfootbridge.com';
 
 export const axiosConfig = {
   headers: {

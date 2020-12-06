@@ -63,7 +63,6 @@ export default function Step2({showToast}) {
         style={base.w3}
         title="Продолжить"
         color="#009F06"
-        // disabled={false}
         onPress={onPress}
       />
     </Wrap>

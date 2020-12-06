@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, Alert} from 'react-native';
 import Image from 'react-native-scalable-image';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import dw from 'hooks/useDesignWidth';
@@ -14,6 +14,7 @@ import * as Images from 'helpers/images';
 
 // Api
 import {postWithdrawalCreate} from 'store/api/withdrawal';
+import {postFeeRatesGet} from 'store/api/feeRates';
 
 // Style
 import {base} from './style';
@@ -22,6 +23,16 @@ export default function Step4({access_token, showNI}) {
   const navigation = useNavigation();
   const route = useRoute();
   const props = route.params?.props ?? {};
+  const [fee, setFee] = useState(0);
+
+  useState(() => {
+    const query = {node: props.node};
+    showNI(true);
+    postFeeRatesGet({access_token, query})
+      .then((result) => setFee(result.data.feeRate))
+      .catch((e) => console.log(e.response))
+      .finally(() => showNI(false));
+  }, [route.params?.props]);
 
   const onPress = () => {
     const query = {
@@ -32,8 +43,13 @@ export default function Step4({access_token, showNI}) {
     };
     showNI(true);
     postWithdrawalCreate({access_token, query})
-      .then(() => navigation.navigate('Portfolio', {props: null}))
-      .catch((e) => console.log(e))
+      .then(() => {
+        navigation.navigate('Portfolio', {props: null});
+        setTimeout(() => {
+          Alert.alert('', 'Вывод с вашего кошелька был успешно создан');
+        }, 1000);
+      })
+      .catch((e) => console.log(e.response))
       .finally(() => showNI(false));
   };
 
@@ -70,8 +86,10 @@ export default function Step4({access_token, showNI}) {
         <View style={base.w2}>
           <Text style={base.t4}>Сумма</Text>
           <View style={base.w9}>
-            <Text style={base.t5}>0.09625 BTC</Text>
-            <Text style={base.t6}>$1,087.18</Text>
+            <Text style={base.t5}>
+              {props.amount} {props.node}
+            </Text>
+            {/* <Text style={base.t6}>$1,087.18</Text> */}
           </View>
         </View>
       </View>
@@ -79,7 +97,9 @@ export default function Step4({access_token, showNI}) {
         <View style={base.w5}>
           <Text style={base.t4}>Комиссия сети</Text>
           <View style={base.w9}>
-            <Text style={base.t5}>0 {props.node}</Text>
+            <Text style={base.t5}>
+              {fee} {props.node}
+            </Text>
             <Text style={base.t7}>Редактировать</Text>
           </View>
         </View>
@@ -89,8 +109,10 @@ export default function Step4({access_token, showNI}) {
         <View style={base.w2}>
           <Text style={base.t4}>Всего</Text>
           <View style={base.w9}>
-            <Text style={base.t5}>0.09625 BTC</Text>
-            <Text style={base.t6}>$0</Text>
+            <Text style={base.t5}>
+              {parseFloat(props.amount) + fee} {props.node}
+            </Text>
+            {/* <Text style={base.t6}>$0</Text> */}
           </View>
         </View>
       </View>

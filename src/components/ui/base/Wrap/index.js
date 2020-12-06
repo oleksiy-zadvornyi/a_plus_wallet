@@ -5,7 +5,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 // Style
 import {base} from './styles';
 
-export default function Wrap({children, titleView, noScroll, style}) {
+export default function Wrap({children, titleView, noScroll, scroll, style}) {
   if (noScroll) {
     return (
       <View style={[base.flex, base.backgroundColor, style]}>
@@ -16,25 +16,35 @@ export default function Wrap({children, titleView, noScroll, style}) {
       </View>
     );
   }
+  if (scroll) {
+    return (
+      <View style={[base.flex, base.backgroundColor, style]}>
+        <View style={base.wrap}>
+          {titleView}
+          <ScrollView
+            contentContainerStyle={base.wrap2}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+            bounces={false}>
+            {children}
+          </ScrollView>
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={[base.flex, base.backgroundColor, style]}>
       {titleView}
       <KeyboardAwareScrollView
-        contentContainerStyle={base.flex}
+        contentContainerStyle={base.wrap2}
         enableOnAndroid
         enableAutomaticScroll
         alwaysBounceVertical={false}
         bounces={false}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}>
-        <ScrollView
-          contentContainerStyle={base.wrap2}
-          showsVerticalScrollIndicator={false}
-          keyboardShouldPersistTaps="handled"
-          bounces={false}>
-          <View style={base.wrap2}>{children}</View>
-        </ScrollView>
+        {children}
       </KeyboardAwareScrollView>
     </View>
   );

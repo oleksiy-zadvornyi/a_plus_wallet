@@ -12,13 +12,12 @@ export default function Portfolio() {
 
   useEffect(() => {
     const props = route.params?.props ?? null;
-
     if (props) {
       setWallet(props);
     } else {
       setWallet();
     }
-  }, [route.params]);
+  }, [route.params?.props]);
 
   return (
     <Wrap noScroll titleView={<Header wallet={wallet} />}>
