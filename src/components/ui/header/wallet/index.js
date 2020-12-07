@@ -4,6 +4,7 @@ import Image from 'react-native-scalable-image';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import {LinearGradient} from 'expo-linear-gradient';
+import i18n from 'i18n-js';
 
 // Helpers
 import * as Images from 'helpers/images';
@@ -35,7 +36,7 @@ export default function Header({onPressFilter}) {
           />
         </View>
 
-        <Text style={base.t1}>Кошельки</Text>
+        <Text style={base.t1}>{i18n.t('t75')}</Text>
 
         <View style={base.w4}>
           <Image

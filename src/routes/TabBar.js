@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, TouchableOpacity, Text, StyleSheet, Platform} from 'react-native';
 import Image from 'react-native-scalable-image';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import i18n from 'i18n-js';
 
 import ModalTransfer from 'modal/transfer';
 
@@ -16,27 +17,27 @@ export function TabBar({navigation}) {
   const routes = [
     {
       key: 'summary',
-      name: 'Сводка',
+      name: i18n.t('t95'),
       onPress: 'Portfolio',
     },
     {
       key: 'wallets',
-      name: 'Кошельки',
+      name: i18n.t('75'),
       onPress: 'Wallet',
     },
     {
       key: 'transfer',
-      name: 'Трансфер',
+      name: i18n.t('t96'),
       onPress: 'ModalTransfer',
     },
     {
       key: 'settings',
-      name: 'Настройки',
+      name: i18n.t('t71'),
       onPress: 'Settings',
     },
     {
       key: 'profile',
-      name: 'Профиль',
+      name: i18n.t('t68'),
       onPress: 'Profile',
     },
   ];

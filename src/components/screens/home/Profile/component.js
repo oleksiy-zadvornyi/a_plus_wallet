@@ -1,5 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {View, Text} from 'react-native';
+import i18n from 'i18n-js';
 
 // Components
 import Wrap from 'base/Wrap';
@@ -55,8 +56,9 @@ export default function Profile({
   return (
     <Wrap titleView={<Header />}>
       <Text style={base.t1}>
-        Профиль заполняется по желанию.{'\n'}
-        Прохождение верификации добровольное.
+        {i18n.t('t23')}
+        {'\n'}
+        {i18n.t('t24')}
       </Text>
       <View style={base.w1}>
         {/* <Text style={base.t2}>Личные данные</Text>
@@ -74,27 +76,27 @@ export default function Profile({
           onSubmitEditing={changeSecondName}
         /> */}
 
-        <Text style={base.t2}>Email</Text>
+        <Text style={base.t2}>{i18n.t('t29')}</Text>
         <Input
           ref={refEmail}
           value={user.email}
           editable={false}
-          placeholder="ваш email"
+          placeholder={i18n.t('t13')}
           keyboardType="email-address"
           button={!user.isEmailVerified}
-          buttonTitle="ВЕРИФИЦИРОВАТЬ"
+          buttonTitle={i18n.t('t25')}
           buttonPress={onPressVerifyEmail}
         />
         <View style={base.w2} />
         <Input
           ref={refPassword}
           editable={false}
-          placeholder="пароль"
+          placeholder={i18n.t('t26')}
           secureTextEntry
         />
         <View style={base.w2} />
         <Button
-          title="Изменить"
+          title={i18n.t('t27')}
           color="#009F06"
           onPress={() => setShow(true)}
         />
@@ -124,7 +126,7 @@ export default function Profile({
         <Input ref={refStreet} placeholder="Улица и номер дома" /> */}
 
         <View style={base.w2} />
-        <Button title="Выход" color="red" onPress={fetchLogout} />
+        <Button title={i18n.t('t28')} color="red" onPress={fetchLogout} />
         <View style={base.w2} />
         <ModalPassword isVisible={show} onPressClose={() => setShow(false)} />
       </View>

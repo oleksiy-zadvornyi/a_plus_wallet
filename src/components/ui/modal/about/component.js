@@ -24,7 +24,7 @@ export default function About({isVisible, onPressClose}) {
         <View style={base.w3}>
           <View style={base.w4} />
           <View style={base.flex} />
-          <Image source={Images.logo} width={dw(230)} />
+          <Image source={Images.logo} height={dw(61)} />
           <View style={base.flex} />
           <Image source={Images.cross} width={dw(30)} onPress={onPressClose} />
         </View>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text} from 'react-native';
+import i18n from 'i18n-js';
 
 // Components
 import Wrap from 'base/Wrap';
@@ -21,7 +22,7 @@ export default function Settings() {
       <View style={base.w1}>
         <Item
           icon={Images.coinPiles}
-          title="Валюта баланса и операций"
+          title={i18n.t('t52')}
           type="text"
           data={['USD']}
         />
@@ -32,15 +33,11 @@ export default function Settings() {
           type="switch"
         /> */}
         <View style={base.w2} />
-        <Item
-          icon={Images.coverFood}
-          title="Скрывать пустые аккаунты"
-          type="switch"
-        />
+        <Item icon={Images.coverFood} title={i18n.t('t53')} type="switch" />
         <View style={base.w2} />
         <Item
           icon={Images.barChart}
-          title="Брать курс для баланса с"
+          title={i18n.t('t54')}
           type="text"
           data={['Binance']}
         />
@@ -51,7 +48,7 @@ export default function Settings() {
           type="switch"
         /> */}
         <View style={base.w2} />
-        <Item icon={Images.language} title="Язык приложения" type="lang" />
+        <Item icon={Images.language} title={i18n.t('t55')} type="lang" />
       </View>
 
       {/* <Text style={base.t1}>Безопасность</Text>
@@ -70,7 +67,7 @@ export default function Settings() {
 
       <Item
         icon={Images.light}
-        title="О приложении"
+        title={i18n.t('t56')}
         type="button"
         onPress={() => setShow(true)}
       />

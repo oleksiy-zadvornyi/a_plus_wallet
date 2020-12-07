@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from 'i18n-js';
 
 // Components
 import Wrap from 'base/Wrap';
@@ -10,9 +11,7 @@ import {base} from './style';
 
 export default function Step1() {
   return (
-    <Wrap
-      noScroll
-      titleView={<Header step={1} title="Выбор кошелька для отправки" />}>
+    <Wrap noScroll titleView={<Header step={1} title={i18n.t('t36')} />}>
       <List />
     </Wrap>
   );

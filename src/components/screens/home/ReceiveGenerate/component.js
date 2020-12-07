@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, Clipboard, Share} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import {useRoute} from '@react-navigation/native';
+import i18n from 'i18n-js';
 
 // Components
 import Wrap from 'base/Wrap';
@@ -61,9 +62,11 @@ export default function ReceiveGenerate(props) {
   return (
     <Wrap scroll titleView={<Header />}>
       <Text style={base.t1}>
-        Скопируйте адрес или, при необходимости,{'\n'}
-        сгенерируйте новый и отправьте{'\n'}
-        его плательщику.
+        {i18n.t('t30')}
+        {'\n'}
+        {i18n.t('t31')}
+        {'\n'}
+        {i18n.t('t32')}
       </Text>
       <View style={base.w1}>
         {hash && (
@@ -75,20 +78,20 @@ export default function ReceiveGenerate(props) {
         <View style={base.w2}>
           <Button
             style={base.w3}
-            title="Сгенерировать новый адрес"
+            title={i18n.t('t33')}
             color="#009F06"
             onPress={depositCreate}
           />
           <View style={base.w4} />
           <Button
-            title="Скопировать"
+            title={i18n.t('t34')}
             color="#1B48BC"
             onPress={onPressClipboard}
           />
         </View>
         <ButtonIcon
           style={base.w6}
-          title="Отправить через мессенджер"
+          title={i18n.t('t35')}
           color="#009F06"
           icon={Images.arrowUp}
           onPress={onShare}

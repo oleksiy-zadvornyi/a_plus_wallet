@@ -7,6 +7,7 @@ import {View} from 'react-native';
 import {LineChart} from 'react-native-chart-kit';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import dw from 'hooks/useDesignWidth';
+import i18n from 'i18n-js';
 
 // Components
 import Button from 'button';
@@ -105,7 +106,7 @@ function Chart({wallet, user, cryptoWallets}) {
           {!wallet && (
             <Button
               style={base.w2}
-              title="Криптовалюта"
+              title={i18n.t('t62')}
               color="#009F06"
               onPress={() => setCrypto(true)}
             />

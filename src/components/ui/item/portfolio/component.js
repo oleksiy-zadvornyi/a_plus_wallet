@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import moment from 'moment';
 import Image from 'react-native-scalable-image';
 import {useNavigation} from '@react-navigation/native';
+import i18n from 'i18n-js';
 
 // Helpers
 import * as Images from 'helpers/images';
@@ -12,7 +13,6 @@ import dw from 'hooks/useDesignWidth';
 
 // Style
 import {base} from './style';
-import {get} from 'react-native/Libraries/Utilities/PixelRatio';
 
 export default function Item({date, data}) {
   const navigation = useNavigation();
@@ -46,7 +46,7 @@ export default function Item({date, data}) {
               <View style={base.w4}>
                 <Text style={base.t2}>{e.accountMask || e.accountName}</Text>
                 <Text style={base.t3}>
-                  {getBool(e) ? 'Получено' : 'Отправлено'} в{' '}
+                  {getBool(e) ? i18n.t('t72') : i18n.t('t73')} {i18n.t('t77')}{' '}
                   {moment(e.createdAt).format('HH:mm')}
                 </Text>
               </View>

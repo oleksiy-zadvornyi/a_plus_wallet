@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import {View, Text, Alert} from 'react-native';
 import Modal from 'react-native-modal';
+import i18n from 'i18n-js';
 
 // Components
 import Button from 'button';
@@ -25,12 +26,12 @@ export default function Password({
   function onPress() {
     const oldPassword = refOldPassword.current.getValue();
     if (oldPassword.length === 0) {
-      showToast('Введите старый пароль');
+      showToast(i18n.t('t84'));
       return;
     }
     const newPassword = refNewPassword.current.getValue();
     if (newPassword.length === 0) {
-      showToast('Введите новый пароль');
+      showToast(i18n.t('t85'));
       return;
     }
     showNI(true);
@@ -42,7 +43,7 @@ export default function Password({
       .then(() => {
         onPressClose();
         setTimeout(() => {
-          Alert.alert('', 'Пароль от вашего аккаунта был успешно изменен');
+          Alert.alert('', i18n.t('t86'));
         }, 1000);
       })
       .catch((e) => showToast(e.response.data.errorText))
@@ -56,22 +57,22 @@ export default function Password({
       onBackButtonPress={onPressClose}
       onBackdropPress={onPressClose}>
       <View style={base.w2}>
-        <Text style={base.t1}>Изменение пароля</Text>
+        <Text style={base.t1}>{i18n.t('t87')}</Text>
         <Input
           ref={refOldPassword}
           style={base.w3}
-          placeholder="старый пароль"
+          placeholder={i18n.t('t88')}
           secureTextEntry
         />
         <Input
           ref={refNewPassword}
           style={base.w3}
-          placeholder="новый пароль"
+          placeholder={i18n.t('t89')}
           secureTextEntry
         />
         <Button
           style={base.w4}
-          title="Изменить"
+          title={i18n.t('t27')}
           color="#009F06"
           onPress={onPress}
         />

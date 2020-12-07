@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import {View, Text, Linking} from 'react-native';
 import {useRoute} from '@react-navigation/native';
+import i18n from 'i18n-js';
 
 // Components
 import Wrap from 'base/Wrap';
@@ -46,30 +47,28 @@ export default function Transaction() {
     return (
       <Wrap titleView={<Header {...props} />}>
         <View style={base.w1}>
-          <Text style={base.t1}>Аккаунт</Text>
+          <Text style={base.t1}>{i18n.t('t57')}</Text>
           <Text style={base.t2}>{accountMask || accountName}</Text>
 
-          <Text style={base.t1}>Дата отправки</Text>
+          <Text style={base.t1}>{i18n.t('t58')}</Text>
           <Text style={base.t2}>
             {moment(createdAt).format('DD MMMM, YYYY в h:mm A')}
           </Text>
 
-          <Text style={base.t1}>Комиссия сети</Text>
+          <Text style={base.t1}>{i18n.t('t48')}</Text>
           <Text style={base.t2}>
             {fee} {node}
           </Text>
 
-          <Text style={base.t1}>ID Транзакции</Text>
-          <Text style={base.t3}>
-            {txId || 'Транзакция пока что не создана в сети'}
-          </Text>
+          <Text style={base.t1}>{i18n.t('t59')}</Text>
+          <Text style={base.t3}>{txId || i18n.t('t60')}</Text>
 
-          <Text style={base.t1}>С кошелька</Text>
+          <Text style={base.t1}>{i18n.t('t46')}</Text>
           <Text style={base.t3}>
             {getBool() ? depositAddress : accountMask}
           </Text>
 
-          <Text style={base.t1}>На кошелек</Text>
+          <Text style={base.t1}>{i18n.t('t47')}</Text>
           <Text style={base.t3}>
             {getBool() ? accountMask : withdrawalAddress}
           </Text>

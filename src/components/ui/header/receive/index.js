@@ -4,6 +4,7 @@ import Image from 'react-native-scalable-image';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {LinearGradient} from 'expo-linear-gradient';
 import {useNavigation} from '@react-navigation/native';
+import i18n from 'i18n-js';
 
 // Helpers
 import * as Images from 'helpers/images';
@@ -26,8 +27,8 @@ export default function Header() {
         <View style={base.w3} />
 
         <View style={base.w5}>
-          <Text style={base.t1}>Пополнение</Text>
-          <Text style={base.t2}>Прием средств</Text>
+          <Text style={base.t1}>{i18n.t('t69')}</Text>
+          <Text style={base.t2}>{i18n.t('t70')}</Text>
         </View>
         <View style={base.w4}>
           <Image

@@ -3,6 +3,7 @@ import {Text, View} from 'react-native';
 import Image from 'react-native-scalable-image';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {LinearGradient} from 'expo-linear-gradient';
+import i18n from 'i18n-js';
 
 // Helpers
 import * as Images from 'helpers/images';
@@ -23,7 +24,7 @@ export default function Header() {
         style={[base.w2, {paddingTop: dw(12) + insets.top}]}>
         <View style={base.w3} />
 
-        <Text style={base.t1}>Настройки</Text>
+        <Text style={base.t1}>{i18n.t('t71')}</Text>
 
         <View style={base.w4}>
           <Image source={Images.cross} width={dw(30)} />

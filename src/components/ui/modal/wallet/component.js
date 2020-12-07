@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Modal from 'react-native-modal';
 import Image from 'react-native-scalable-image';
+import i18n from 'i18n-js';
 
 // Components
 import Button from 'button';
@@ -14,10 +15,10 @@ import dw from 'hooks/useDesignWidth';
 import {base} from './style';
 
 const filters = [
-  'Название от A-Z',
-  'Название от Z-A',
-  'От низкого к высокому балансу',
-  'От высокого к низкому балансу',
+  `${i18n.t('90')} A-Z`,
+  `${i18n.t('t90')} Z-A`,
+  i18n.t('t91'),
+  i18n.t('t92'),
 ];
 
 export default function Filter({
@@ -34,7 +35,7 @@ export default function Filter({
       onBackdropPress={onPressClose}>
       <View style={base.flex} />
       <View style={base.w2}>
-        <Text style={base.t1}>Сортировать по</Text>
+        <Text style={base.t1}>{i18n.t('t93')}</Text>
         {filters.map((e, i) => {
           function onPress() {
             onPressSelect(i);
@@ -52,7 +53,7 @@ export default function Filter({
         })}
         <Button
           style={base.w5}
-          title="Готово"
+          title={i18n.t('t94')}
           color="#009F06"
           onPress={onPressClose}
         />

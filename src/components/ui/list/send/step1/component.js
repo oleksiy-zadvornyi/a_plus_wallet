@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {FlatList, View, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import i18n from 'i18n-js';
 
 // Components
 import Item from 'item/receive';
@@ -34,8 +35,9 @@ function List({account}) {
   return (
     <View style={base.w1}>
       <Text style={base.t1}>
-        Выберите кошелек на котором{'\n'}
-        мы будем генерировать адрес.
+        {i18n.t('t82')}
+        {'\n'}
+        {i18n.t('t83')}
       </Text>
       <FlatList
         data={account}
@@ -46,7 +48,7 @@ function List({account}) {
 
       <Button
         style={base.w3}
-        title="Продолжить"
+        title={i18n.t('t67')}
         color="#009F06"
         disabled={itemIndex < 0}
         onPress={onPress}

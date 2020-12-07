@@ -3,6 +3,7 @@ import {View, Text, Alert} from 'react-native';
 import Image from 'react-native-scalable-image';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import dw from 'hooks/useDesignWidth';
+import i18n from 'i18n-js';
 
 // Components
 import Wrap from 'base/Wrap';
@@ -46,7 +47,7 @@ export default function Step4({access_token, showNI}) {
       .then(() => {
         navigation.navigate('Portfolio', {props: null});
         setTimeout(() => {
-          Alert.alert('', 'Вывод с вашего кошелька был успешно создан');
+          Alert.alert('', i18n.t('t45'));
         }, 1000);
       })
       .catch((e) => console.log(e.response))
@@ -54,14 +55,14 @@ export default function Step4({access_token, showNI}) {
   };
 
   return (
-    <Wrap noScroll titleView={<Header step={4} title="Итог" />}>
+    <Wrap noScroll titleView={<Header step={4} title={i18n.t('t51')} />}>
       <View style={base.w1}>
         <View style={base.w2}>
           <View style={base.w3}>
             <Image source={Images.wallet} width={dw(20)} />
           </View>
           <View style={base.w4}>
-            <Text style={base.t1}>С кошелька</Text>
+            <Text style={base.t1}>{i18n.t('t46')}</Text>
             <View style={base.w2}>
               <Image source={Images[props.node]} width={dw(20)} />
               <Text style={base.t2}>{props.maskName || props.accountName}</Text>
@@ -74,7 +75,7 @@ export default function Step4({access_token, showNI}) {
             <Image source={Images.qrCode} width={dw(20)} />
           </View>
           <View style={base.w4}>
-            <Text style={base.t1}>На кошелек</Text>
+            <Text style={base.t1}>{i18n.t('t47')}</Text>
             <View style={base.w2}>
               <Text style={base.t3}>{props.address}</Text>
             </View>
@@ -84,7 +85,7 @@ export default function Step4({access_token, showNI}) {
       <View style={base.w7} />
       <View style={base.w8}>
         <View style={base.w2}>
-          <Text style={base.t4}>Сумма</Text>
+          <Text style={base.t4}>{i18n.t('t42')}</Text>
           <View style={base.w9}>
             <Text style={base.t5}>
               {props.amount} {props.node}
@@ -95,19 +96,19 @@ export default function Step4({access_token, showNI}) {
       </View>
       <View style={base.w8}>
         <View style={base.w5}>
-          <Text style={base.t4}>Комиссия сети</Text>
+          <Text style={base.t4}>{i18n.t('t48')}</Text>
           <View style={base.w9}>
             <Text style={base.t5}>
               {fee} {props.node}
             </Text>
-            <Text style={base.t7}>Редактировать</Text>
+            <Text style={base.t7}>{i18n.t('t49')}</Text>
           </View>
         </View>
       </View>
       <View style={base.w7} />
       <View style={base.w8}>
         <View style={base.w2}>
-          <Text style={base.t4}>Всего</Text>
+          <Text style={base.t4}>{i18n.t('t50')}</Text>
           <View style={base.w9}>
             <Text style={base.t5}>
               {parseFloat(props.amount) + fee} {props.node}
@@ -120,7 +121,7 @@ export default function Step4({access_token, showNI}) {
       <Button
         style={base.w10}
         color="#009F06"
-        title="Отправить"
+        title={i18n.t('t7')}
         onPress={onPress}
       />
     </Wrap>

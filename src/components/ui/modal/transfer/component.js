@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Modal from 'react-native-modal';
 import Image from 'react-native-scalable-image';
+import i18n from 'i18n-js';
 
 // Helpers
 import * as Images from 'helpers/images';
@@ -12,12 +13,12 @@ import {base} from './style';
 
 const filters = [
   {
-    title: 'Отправить',
+    title: i18n.t('t7'),
     image: 'transactionUp',
     screen: 'Step1',
   },
   {
-    title: 'Получить',
+    title: i18n.t('t41'),
     image: 'transactionDown',
     screen: 'Receive',
   },

@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import moment from 'moment';
 import md5 from 'md5';
+import i18n from 'i18n-js';
 import {useRoute, useNavigation} from '@react-navigation/native';
 
 // Components
@@ -27,7 +28,7 @@ export default function CryptoName({
     if (props) {
       const accountMask = refName.current.getValue();
       if (accountMask.length === 0) {
-        showToast('Введите название кошелька');
+        showToast(i18n.t('t19'));
         return;
       }
 
@@ -43,15 +44,14 @@ export default function CryptoName({
   }
 
   return (
-    <Wrap
-      noScroll
-      titleView={<Header title="Название кошелька" step={2} goBack />}>
-      <Input
-        ref={refName}
+    <Wrap noScroll titleView={<Header title={i18n.t('t20')} step={2} goBack />}>
+      <Input ref={refName} style={base.w1} placeholder={i18n.t('t21')} />
+      <Button
         style={base.w1}
-        placeholder="введите название кошелька"
+        title={i18n.t('t22')}
+        color="#009F06"
+        onPress={done}
       />
-      <Button style={base.w1} title="Создать" color="#009F06" onPress={done} />
     </Wrap>
   );
 }

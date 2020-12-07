@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Image from 'react-native-scalable-image';
 import {useNavigation} from '@react-navigation/native';
+import i18n from 'i18n-js';
 
 // Helpers
 import * as Images from 'helpers/images';
@@ -25,7 +26,7 @@ export default function Item(props) {
       <Image source={Images[node]} width={dw(34)} />
       <View style={base.w2}>
         <Text style={base.t1}>{maskName || accountName}</Text>
-        <Text style={base.t2}>{isActive ? 'Активен' : 'Не активен'}</Text>
+        <Text style={base.t2}>{isActive ? i18n.t('t78') : i18n.t('t79')}</Text>
       </View>
       <View style={base.w3}>
         <Text style={base.t3}>

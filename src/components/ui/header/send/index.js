@@ -4,6 +4,7 @@ import Image from 'react-native-scalable-image';
 import {LinearGradient} from 'expo-linear-gradient';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
+import i18n from 'i18n-js';
 
 // Helpers
 import * as Images from 'helpers/images';
@@ -34,7 +35,9 @@ export default function Header({step, title}) {
         </View>
 
         <View style={base.w5}>
-          <Text style={base.t1}>{`Шаг ${step} из 5`}</Text>
+          <Text style={base.t1}>{`${i18n.t('t63')} ${step} ${i18n.t(
+            't64',
+          )} 4`}</Text>
           <Text style={base.t2}>{title}</Text>
         </View>
         <View style={base.w4}>

@@ -3,6 +3,7 @@ import {Text, View} from 'react-native';
 import Image from 'react-native-scalable-image';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
+import i18n from 'i18n-js';
 
 // Helpers
 import * as Images from 'helpers/images';
@@ -33,8 +34,10 @@ export default function Header({discriminator, confirmations, amount, node}) {
           />
         </View>
         <View style={base.w4}>
-          <Text style={base.t1}>Детали транзакции</Text>
-          <Text style={base.t2}>{getBool() ? 'Получение' : 'Отправка'}</Text>
+          <Text style={base.t1}>{i18n.t('t74')}</Text>
+          <Text style={base.t2}>
+            {getBool() ? i18n.t('t72') : i18n.t('t73')}
+          </Text>
         </View>
         <View style={base.w3} />
       </View>

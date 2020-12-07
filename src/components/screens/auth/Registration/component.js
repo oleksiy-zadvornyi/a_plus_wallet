@@ -1,4 +1,5 @@
 import React, {useRef} from 'react';
+import i18n from 'i18n-js';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Image from 'react-native-scalable-image';
@@ -26,22 +27,22 @@ export default function Registration({fetchSignup, showToast}) {
   function done() {
     const userName = refLogin.current.getValue();
     if (userName.length === 0) {
-      showToast('Введите логин пользователя');
+      showToast(i18n.t('t1'));
       return;
     }
     const password = refPassword.current.getValue();
     if (password.length === 0) {
-      showToast('Введите пароль');
+      showToast(i18n.t('t2'));
       return;
     }
     const rePassword = refRePassword.current.getValue();
     if (password !== rePassword) {
-      showToast('Пароли не совпадают');
+      showToast(i18n.t('t10'));
       return;
     }
     const email = refEmail.current.getValue();
     if (email.length === 0) {
-      showToast('Введите email');
+      showToast(i18n.t('t11'));
       return;
     }
 
@@ -49,17 +50,15 @@ export default function Registration({fetchSignup, showToast}) {
   }
 
   return (
-    <Wrap titleView={<Header title="Регистрация" />}>
+    <Wrap titleView={<Header title={i18n.t('t17')} />}>
       <View style={base.flex} />
       <View style={base.w1}>
-        <Image source={Images.logo} width={dw(230)} />
-        <Text style={base.t1}>
-          После регистрации вы сможете войти в систему
-        </Text>
+        <Image source={Images.logo} height={dw(61)} />
+        <Text style={base.t1}>{i18n.t('t12')}</Text>
         <Input
           ref={refEmail}
           style={base.w2}
-          placeholder="ваш email"
+          placeholder={i18n.t('t13')}
           keyboardType="email-address"
           returnKeyType="next"
           autoCapitalize="none"
@@ -68,7 +67,7 @@ export default function Registration({fetchSignup, showToast}) {
         <Input
           ref={refLogin}
           style={base.w2}
-          placeholder="ваш логин"
+          placeholder={i18n.t('t5')}
           returnKeyType="next"
           autoCapitalize="none"
           onSubmitEditing={() => refPassword.current.focus()}
@@ -76,7 +75,7 @@ export default function Registration({fetchSignup, showToast}) {
         <Input
           ref={refPassword}
           style={base.w2}
-          placeholder="ваш пароль"
+          placeholder={i18n.t('t6')}
           returnKeyType="next"
           autoCapitalize="none"
           secureTextEntry
@@ -86,7 +85,7 @@ export default function Registration({fetchSignup, showToast}) {
         <Input
           ref={refRePassword}
           style={base.w2}
-          placeholder="повторите пароль"
+          placeholder={i18n.t('t14')}
           autoCapitalize="none"
           secureTextEntry
           textContentType="oneTimeCode"
@@ -94,14 +93,14 @@ export default function Registration({fetchSignup, showToast}) {
         />
         <Button
           style={base.w2}
-          title="Отправить"
+          title={i18n.t('t7')}
           color="#009F06"
           onPress={done}
         />
         <View style={base.w4}>
-          <Text style={base.t2}>У вас уже есть аккаунт?</Text>
+          <Text style={base.t2}>{i18n.t('t15')}</Text>
           <TouchableOpacity onPress={() => navigation.replace('Login')}>
-            <Text style={base.t3}>Перейдите на страницу входа.</Text>
+            <Text style={base.t3}>{i18n.t('t16')}</Text>
           </TouchableOpacity>
         </View>
       </View>

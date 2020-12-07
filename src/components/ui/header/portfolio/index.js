@@ -5,6 +5,7 @@ import Image from 'react-native-scalable-image';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import {LinearGradient} from 'expo-linear-gradient';
+import i18n from 'i18n-js';
 
 // Helpers
 import * as Images from 'helpers/images';
@@ -51,7 +52,7 @@ function Header({user, wallet}) {
             style={[base.w2, {paddingTop: insets.top}]}>
             <View style={base.w3}>
               <View style={base.flex}>
-                <Text style={base.t1}>Доброе утро</Text>
+                <Text style={base.t1}>{i18n.t('t65')}</Text>
                 <Text style={base.t2}>{user.userName}</Text>
               </View>
               {/* <View>
@@ -63,18 +64,18 @@ function Header({user, wallet}) {
               <Text style={base.t3}>
                 $ <Text style={base.t4}>{renderBalance()}</Text>
               </Text>
-              <Text style={base.t5}>Ваш баланс</Text>
+              <Text style={base.t5}>{i18n.t('t66')}</Text>
             </View>
           </LinearGradient>
         </View>
         <View style={base.w5}>
           <TouchableOpacity style={base.w6} onPress={onPressReceive}>
             <Image source={Images.expense} height={dw(24)} />
-            <Text style={base.t6}>Получить</Text>
+            <Text style={base.t6}>{i18n.t('t67')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={base.w6} onPress={onPressSend}>
             <Image source={Images.withdrawal} height={dw(24)} />
-            <Text style={base.t6}>Отправить</Text>
+            <Text style={base.t6}>{i18n.t('t7')}</Text>
           </TouchableOpacity>
         </View>
       </View>
