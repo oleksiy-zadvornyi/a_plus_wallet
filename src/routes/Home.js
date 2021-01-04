@@ -18,6 +18,7 @@ import Wallet from 'screens/home/Wallet';
 import Settings from 'screens/home/Settings';
 import Profile from 'screens/home/Profile';
 import Receive from 'screens/home/Receive';
+import Services from 'screens/home/Services';
 
 import Step1 from 'screens/home/Send/Step1';
 import Step2 from 'screens/home/Send/Step2';
@@ -43,6 +44,7 @@ function StackRoute() {
       <Stack.Screen name="Settings" component={Settings} options={options} />
       <Stack.Screen name="Profile" component={Profile} options={options} />
       <Stack.Screen name="Receive" component={Receive} options={options} />
+      <Stack.Screen name="Services" component={Services} options={options} />
 
       <Stack.Screen name="Step1" component={Step1} options={options} />
       <Stack.Screen name="Step2" component={Step2} options={options} />
@@ -95,11 +97,15 @@ function Home({
 
     const signalR = require('@microsoft/signalr');
     const connection = new signalR.HubConnectionBuilder()
-      .withUrl(`${URL}/notificationuserhub?userId=${userName}`, {
-        transport: signalR.HttpTransportType.LongPolling,
-      })
-      .withAutomaticReconnect([0, 3000, 5000, 10000, 15000, 30000])
+      .withUrl(`${URL}/notificationuserhub?userId=${userName}`)
       .build();
+
+    // const connection = new signalR.HubConnectionBuilder()
+    //   .withUrl(`${URL}/notificationuserhub?userId=${userName}`, {
+    //     transport: signalR.HttpTransportType.LongPolling,
+    //   })
+    //   .withAutomaticReconnect([0, 3000, 5000, 10000, 15000, 30000])
+    //   .build();
 
     connection.on('ReloadBalance', () => {
       getTransactionAll({access_token});
@@ -108,9 +114,9 @@ function Home({
       getUserAccountsBalance({access_token});
     });
 
-    // connection.on('GetConnectionId', (data) => {
-    //   console.log(data);
-    // });
+    connection.on('GetConnectionId', (data) => {
+      // console.log(data);
+    });
 
     connection.start().then(() => connection.invoke('GetConnectionId'));
   }, []);

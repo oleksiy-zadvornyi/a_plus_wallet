@@ -48,6 +48,7 @@ export default function Login({fetchLogin, showToast}) {
           placeholder={i18n.t('t5')}
           returnKeyType="next"
           autoCapitalize="none"
+          // value="witetigre"
           onSubmitEditing={() => refPassword.current.focus()}
         />
         <Input
@@ -56,6 +57,7 @@ export default function Login({fetchLogin, showToast}) {
           placeholder={i18n.t('t6')}
           autoCapitalize="none"
           secureTextEntry
+          // value="user3b560f"
           onSubmitEditing={done}
         />
         <Button

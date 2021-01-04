@@ -14,19 +14,19 @@ import dw from 'hooks/useDesignWidth';
 // Style
 import {base} from './style';
 
-const filters = [
-  `${i18n.t('90')} A-Z`,
-  `${i18n.t('t90')} Z-A`,
-  i18n.t('t91'),
-  i18n.t('t92'),
-];
-
 export default function Filter({
   isVisible,
   index,
   onPressSelect,
   onPressClose,
 }) {
+  const filters = [
+    `${i18n.t('t90')} A-Z`,
+    `${i18n.t('t90')} Z-A`,
+    i18n.t('t91'),
+    i18n.t('t92'),
+  ];
+
   return (
     <Modal
       style={base.w1}

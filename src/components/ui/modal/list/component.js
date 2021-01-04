@@ -13,7 +13,13 @@ import dw from 'hooks/useDesignWidth';
 // Style
 import {base} from './style';
 
-export default function List({isVisible, list, onPressSelect, onPressClose}) {
+export default function List({
+  isVisible,
+  value,
+  list,
+  onPressSelect,
+  onPressClose,
+}) {
   return (
     <Modal
       style={base.w1}
@@ -24,7 +30,7 @@ export default function List({isVisible, list, onPressSelect, onPressClose}) {
         {list.map((e, i) => (
           <TouchableOpacity
             key={i}
-            style={base.w3}
+            style={[base.w3, e.name === value && base.w4]}
             onPress={() => onPressSelect(e.value)}>
             <Text style={base.t1}>{e.name}</Text>
           </TouchableOpacity>

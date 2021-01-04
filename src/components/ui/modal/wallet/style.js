@@ -19,10 +19,10 @@ export const base = StyleSheet.create({
   w3: {
     flexDirection: 'row',
     width: wp(100) - dw(14),
-    height: dw(45),
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: dw(4),
+    paddingVertical: dw(4),
   },
   w4: {
     backgroundColor: '#C4C4C4',
@@ -45,7 +45,7 @@ export const base = StyleSheet.create({
     textAlign: 'left',
     fontFamily: 'Roboto',
     fontWeight: '700',
-    fontSize: dw(24),
+    fontSize: dw(22),
     lineHeight: dw(28),
     color: '#5A5A5A',
   },

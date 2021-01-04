@@ -8,6 +8,10 @@ import {LineChart} from 'react-native-chart-kit';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import dw from 'hooks/useDesignWidth';
 import i18n from 'i18n-js';
+import {
+  createAnimatableComponent,
+  View as AView,
+} from 'react-native-animatable';
 
 // Components
 import Button from 'button';
@@ -46,17 +50,28 @@ function Chart({wallet, user, cryptoWallets}) {
   });
 
   useEffect(() => {
+    let isSubscribed = true;
     if (wallet) {
       const query = {scale, accountName: wallet.accountName};
       getAccountBalancePeriod({access_token, query})
-        .then((result) => setData(result.data))
+        .then((result) => {
+          if (isSubscribed) {
+            return setData(result.data);
+          }
+        })
         .catch((e) => console.log(e));
     } else {
       const query = {scale, cryptoCurrency};
       getUserBalancePeriod({access_token, query})
-        .then((result) => setData(result.data))
+        .then((result) => {
+          if (isSubscribed) {
+            return setData(result.data);
+          }
+        })
         .catch((e) => console.log(e));
     }
+
+    return () => (isSubscribed = false);
   }, [wallet, scale, cryptoCurrency]);
 
   function getData() {
@@ -83,15 +98,25 @@ function Chart({wallet, user, cryptoWallets}) {
 
   if (data.length > 0) {
     return (
-      <View>
+      <AView
+        animation={{
+          from: {
+            opacity: 0,
+          },
+          to: {
+            opacity: 1,
+          },
+        }}
+        duration={2000}
+        useNativeDriver>
         {wallet && <Text style={base.t2}>{wallet.maskName}</Text>}
         <LineChart
           data={getData()}
-          width={wp(100) - dw(8)}
+          width={wp(100) - dw(28)}
           height={dw(200)}
           withDots={false}
-          // withShadow={false}
           segments={3}
+          yLabelsOffset={dw(30)}
           chartConfig={{
             backgroundGradientFrom: '#141D33',
             backgroundGradientTo: '#141D33',
@@ -122,6 +147,7 @@ function Chart({wallet, user, cryptoWallets}) {
         <ModalList
           isVisible={crypto}
           list={cryptoList}
+          value={cryptoCurrency}
           onPressSelect={onPressSelectCrypto}
           onPressClose={() => setCrypto(false)}
         />
@@ -131,7 +157,7 @@ function Chart({wallet, user, cryptoWallets}) {
           onPressSelect={onPressSelectPeriod}
           onPressClose={() => setPeriod(false)}
         /> */}
-      </View>
+      </AView>
     );
   }
   return null;

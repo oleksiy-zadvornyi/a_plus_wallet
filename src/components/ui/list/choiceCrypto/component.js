@@ -17,6 +17,7 @@ export default function List({cryptoWallets}) {
         e.currencyFulName.toLowerCase().startsWith(finder.toLowerCase()),
       );
     }
+
     return cryptoWallets;
   }
   function onChangeText(text) {

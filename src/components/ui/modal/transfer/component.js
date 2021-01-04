@@ -11,20 +11,19 @@ import dw from 'hooks/useDesignWidth';
 // Style
 import {base} from './style';
 
-const filters = [
-  {
-    title: i18n.t('t7'),
-    image: 'transactionUp',
-    screen: 'Step1',
-  },
-  {
-    title: i18n.t('t41'),
-    image: 'transactionDown',
-    screen: 'Receive',
-  },
-];
-
 export default function Transfer({navigation, isVisible, onPressClose}) {
+  const filters = [
+    {
+      title: i18n.t('t7'),
+      image: 'transactionUp',
+      screen: 'Step1',
+    },
+    {
+      title: i18n.t('t67'),
+      image: 'transactionDown',
+      screen: 'Receive',
+    },
+  ];
   return (
     <Modal
       style={base.w1}
@@ -42,7 +41,10 @@ export default function Transfer({navigation, isVisible, onPressClose}) {
           }
 
           return (
-            <TouchableOpacity key={i} style={base.w3} onPress={onPress}>
+            <TouchableOpacity
+              key={i}
+              style={[base.w3, i < filters.length - 1 && base.w5]}
+              onPress={onPress}>
               <View style={base.w4}>
                 <Image source={Images[e.image]} width={dw(18)} />
               </View>

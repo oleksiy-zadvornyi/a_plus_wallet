@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import component from './component';
 
-import {showNetworkIndicator} from 'store/actions';
+import {showNetworkIndicator, showToast} from 'store/actions';
 
 function mapStateToProps(state) {
   return {
@@ -12,6 +12,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     showNI: (data) => dispatch(showNetworkIndicator(data)),
+    showToast: (data) => dispatch(showToast(data)),
   };
 }
 

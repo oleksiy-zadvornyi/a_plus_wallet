@@ -16,7 +16,7 @@ export function* _catch(error, title) {
         return;
       }
       default: {
-        yield put({type: 'toast', data: error.response.data.message});
+        yield put({type: 'toast', data: error.response.data.errorText});
       }
     }
   } else {

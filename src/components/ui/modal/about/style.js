@@ -40,7 +40,10 @@ export const base = StyleSheet.create({
     alignItems: 'center',
   },
   w6: {
-    height: dw(160),
+    marginTop: dw(29),
+  },
+  w7: {
+    height: dw(83),
   },
   t1: {
     fontFamily: 'Roboto',

@@ -31,6 +31,7 @@ export const base = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'flex-start',
     paddingHorizontal: dw(28),
+    marginTop: dw(8),
   },
   w4: {
     alignItems: 'center',

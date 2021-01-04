@@ -25,6 +25,9 @@ export const base = StyleSheet.create({
     width: dw(32),
     alignItems: 'center',
   },
+  w5: {
+    backgroundColor: '#141D33',
+  },
   t1: {
     flex: 1,
     fontFamily: 'Roboto',

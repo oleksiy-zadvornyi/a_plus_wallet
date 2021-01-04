@@ -17,8 +17,8 @@ export default function Password({
   isVisible,
   onPressClose,
   access_token,
-  showToast,
   showNI,
+  showToast,
 }) {
   const refOldPassword = useRef();
   const refNewPassword = useRef();
@@ -44,7 +44,7 @@ export default function Password({
         onPressClose();
         setTimeout(() => {
           Alert.alert('', i18n.t('t86'));
-        }, 1000);
+        });
       })
       .catch((e) => showToast(e.response.data.errorText))
       .finally(() => showNI(false));

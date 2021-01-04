@@ -54,7 +54,6 @@ export function* fetchGetAccountAll(action) {
 
     const account = yield Api.getAccountAll(action.data);
     const data = getTransactionsSort(account);
-
     yield put({type: 'accountAll', data});
   } catch (error) {
     yield* _catch(error, 'fetchGetAccountAll');

@@ -4,7 +4,7 @@ import Image from 'react-native-scalable-image';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import i18n from 'i18n-js';
 
-import ModalTransfer from 'modal/transfer';
+// import ModalTransfer from 'modal/transfer';
 
 // Helpers
 import * as Images from 'helpers/images';
@@ -22,13 +22,13 @@ export function TabBar({navigation}) {
     },
     {
       key: 'wallets',
-      name: i18n.t('75'),
+      name: i18n.t('t75'),
       onPress: 'Wallet',
     },
     {
       key: 'transfer',
-      name: i18n.t('t96'),
-      onPress: 'ModalTransfer',
+      name: i18n.t('t97'),
+      onPress: 'Services',
     },
     {
       key: 'settings',
@@ -42,9 +42,9 @@ export function TabBar({navigation}) {
     },
   ];
 
-  function onPressClose() {
-    setShow(false);
-  }
+  // function onPressClose() {
+  //   setShow(false);
+  // }
 
   return (
     <View style={base.flexDirection}>
@@ -66,11 +66,11 @@ export function TabBar({navigation}) {
           </TouchableOpacity>
         );
       })}
-      <ModalTransfer
+      {/* <ModalTransfer
         navigation={navigation}
         isVisible={show}
         onPressClose={onPressClose}
-      />
+      /> */}
     </View>
   );
 }

@@ -6,9 +6,10 @@ export const base = StyleSheet.create({
   flex: {
     flex: 1,
   },
-  w1: {
+  w1: {},
+  w2: {
     width: wp(100) - dw(40),
-    marginVertical: dw(4),
+    marginVertical: dw(10),
   },
 });
 

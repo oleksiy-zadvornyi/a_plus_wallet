@@ -41,7 +41,11 @@ export default function Header({step, title}) {
           <Text style={base.t2}>{title}</Text>
         </View>
         <View style={base.w4}>
-          <Image source={Images.cross} width={dw(30)} />
+          <Image
+            source={Images.cross}
+            width={dw(30)}
+            onPress={navigation.goBack}
+          />
         </View>
       </LinearGradient>
     </View>

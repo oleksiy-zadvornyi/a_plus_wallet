@@ -1,4 +1,5 @@
 import {put} from 'redux-saga/effects';
+import i18n from 'i18n-js';
 
 import {_catch} from 'helpers';
 import * as Api from '../api/user';
@@ -84,7 +85,10 @@ export function* fetchUserAcceptEmail(action) {
     yield put({type: 'networkIndicator', data: true});
     yield Api.postUserAcceptEmail(action.data);
     yield put({type: 'reduceVerifyEmail'});
-    yield put({type: 'toast', data: 'Верификация пройдена'});
+    yield put({
+      type: 'toast',
+      data: i18n.t('t111'),
+    });
   } catch (error) {
     yield* _catch(error, 'fetchUserAcceptEmail');
   } finally {

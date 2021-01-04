@@ -21,6 +21,7 @@ export const base = StyleSheet.create({
     width: wp(100),
     alignItems: 'center',
     paddingHorizontal: dw(14),
+    paddingVertical: dw(20),
   },
   t1: {
     fontFamily: 'Poppins',
@@ -29,7 +30,6 @@ export const base = StyleSheet.create({
     lineHeight: dw(21),
     color: 'white',
     paddingTop: dw(16),
-    paddingBottom: dw(22),
   },
   t2: {
     fontFamily: 'Roboto',
@@ -38,7 +38,6 @@ export const base = StyleSheet.create({
     lineHeight: dw(16),
     color: 'white',
     textAlign: 'center',
-    paddingTop: dw(42),
   },
   t3: {
     fontFamily: 'Roboto',

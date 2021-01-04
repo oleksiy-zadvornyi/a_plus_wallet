@@ -25,7 +25,7 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 export default function ReceiveGenerate(props) {
   const [hash, setHash] = useState();
   const route = useRoute();
-  const {access_token, showNI} = props;
+  const {access_token, showNI, showToast} = props;
 
   useEffect(() => {
     const params = route.params?.props ?? null;
@@ -50,6 +50,7 @@ export default function ReceiveGenerate(props) {
   function onPressClipboard() {
     if (hash) {
       Clipboard.setString(hash.address);
+      showToast(i18n.t('t110'));
     }
   }
 

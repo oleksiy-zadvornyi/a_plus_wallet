@@ -11,7 +11,7 @@ const options = {title: null, gestureEnabled: false};
 export default function Auth() {
   return (
     <NavigationContainer>
-      <Stack.Navigator headerMode="none">
+      <Stack.Navigator headerMode="none" mode="modal">
         <Stack.Screen name="Login" component={Login} options={options} />
         <Stack.Screen
           name="Registration"

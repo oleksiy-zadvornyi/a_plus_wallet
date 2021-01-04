@@ -15,30 +15,43 @@ function List({account}) {
   const [itemIndex, setIndex] = useState(-1);
   const navigation = useNavigation();
 
-  const onChange = (ind) => {
+  function onChange(ind) {
     setIndex(ind);
-  };
-  const onPress = () => {
+  }
+  function onPress() {
     navigation.navigate('Step2', {props: account[itemIndex]});
-  };
+  }
+  function onPressCreateWallet() {
+    navigation.navigate('ChoiceCrypto');
+  }
 
-  const renderItem = ({item, index}) => (
-    <Item
-      {...item}
-      index={index}
-      isSelect={itemIndex === index}
-      onChange={onChange}
-    />
-  );
-  const renderSeparatorComponent = () => <View style={base.w2} />;
+  function renderItem({item, index}) {
+    return (
+      <Item
+        {...item}
+        index={index}
+        isSelect={itemIndex === index}
+        onChange={onChange}
+      />
+    );
+  }
+
+  function renderSeparatorComponent() {
+    return <View style={base.w2} />;
+  }
 
   return (
     <View style={base.w1}>
-      <Text style={base.t1}>
-        {i18n.t('t82')}
-        {'\n'}
-        {i18n.t('t83')}
-      </Text>
+      {account.length > 0 ? (
+        <Text style={base.t1}>
+          {i18n.t('t82')}
+          {'\n'}
+          {i18n.t('t83')}
+        </Text>
+      ) : (
+        <Text style={base.t1}>{i18n.t('t108')}</Text>
+      )}
+
       <FlatList
         data={account}
         renderItem={renderItem}
@@ -46,13 +59,22 @@ function List({account}) {
         ItemSeparatorComponent={renderSeparatorComponent}
       />
 
-      <Button
-        style={base.w3}
-        title={i18n.t('t67')}
-        color="#009F06"
-        disabled={itemIndex < 0}
-        onPress={onPress}
-      />
+      {account.length > 0 ? (
+        <Button
+          style={base.w3}
+          title={i18n.t('t41')}
+          color="#009F06"
+          disabled={itemIndex < 0}
+          onPress={onPress}
+        />
+      ) : (
+        <Button
+          style={base.w3}
+          title={i18n.t('t107')}
+          color="#009F06"
+          onPress={onPressCreateWallet}
+        />
+      )}
     </View>
   );
 }

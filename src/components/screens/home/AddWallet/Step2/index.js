@@ -10,8 +10,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    showToast: (data) => dispatch(showToast(data)),
     postAccountCreate: (data) => dispatch(fetchPostAccountCreate(data)),
+    showToast: (data) => dispatch(showToast(data)),
   };
 }
 

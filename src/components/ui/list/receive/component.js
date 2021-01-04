@@ -18,9 +18,12 @@ function List({account}) {
   const onChange = (ind) => {
     setIndex(ind);
   };
-  const onPress = () => {
+  function onPress() {
     navigation.navigate('ReceiveGenerate', {props: account[itemIndex]});
-  };
+  }
+  function onPressCreateWallet() {
+    navigation.navigate('ChoiceCrypto');
+  }
 
   const renderItem = ({item, index}) => (
     <Item
@@ -34,32 +37,46 @@ function List({account}) {
 
   return (
     <View style={base.w1}>
-      <Text style={base.t1}>
-        {i18n.t('t80')}
-        {'\n'}
-        {i18n.t('t81')}
-      </Text>
+      {account.length > 0 ? (
+        <Text style={base.t1}>
+          {i18n.t('t80')}
+          {'\n'}
+          {i18n.t('t81')}
+        </Text>
+      ) : (
+        <Text style={base.t1}>{i18n.t('t108')}</Text>
+      )}
+
       <FlatList
-        data={account.filter((e) => e.isActive)}
+        data={account}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
         ItemSeparatorComponent={renderSeparatorComponent}
       />
 
-      <Button
-        style={base.w3}
-        title={i18n.t('t41')}
-        color="#009F06"
-        disabled={itemIndex < 0}
-        onPress={onPress}
-      />
+      {account.length > 0 ? (
+        <Button
+          style={base.w3}
+          title={i18n.t('t41')}
+          color="#009F06"
+          disabled={itemIndex < 0}
+          onPress={onPress}
+        />
+      ) : (
+        <Button
+          style={base.w3}
+          title={i18n.t('t107')}
+          color="#009F06"
+          onPress={onPressCreateWallet}
+        />
+      )}
     </View>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    account: state.account,
+    account: state.account.filter((e) => e.isActive),
   };
 }
 

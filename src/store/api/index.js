@@ -1,5 +1,7 @@
-// export const URL = 'http://88.198.52.78:5000';
+import axios from 'axios';
 export const URL = 'https://api.bigfootbridge.com';
+
+axios.defaults.headers.common['Service-Destination'] = 'wallet';
 
 export const axiosConfig = {
   headers: {
@@ -12,17 +14,6 @@ export const axiosConfigToken = (token) => {
   const headers = {
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  return headers;
-};
-
-export const axiosConfigOctetStream = (token, contentType) => {
-  const headers = {
-    headers: {
-      'Content-Type': contentType,
       Accept: 'application/json',
       Authorization: `Bearer ${token}`,
     },

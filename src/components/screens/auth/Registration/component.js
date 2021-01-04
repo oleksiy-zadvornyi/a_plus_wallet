@@ -46,7 +46,7 @@ export default function Registration({fetchSignup, showToast}) {
       return;
     }
 
-    // fetchSignup({userName, password, email});
+    fetchSignup({userName, password, email});
   }
 
   return (

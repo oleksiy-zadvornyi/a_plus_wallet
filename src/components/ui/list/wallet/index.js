@@ -4,6 +4,7 @@ import component from './component';
 function mapStateToProps(state) {
   return {
     account: state.account,
+    emptyAccount: state.settings.emptyAccount,
   };
 }
 

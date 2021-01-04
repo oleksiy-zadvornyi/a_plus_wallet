@@ -1,4 +1,5 @@
 import React, {useRef} from 'react';
+import {View} from 'react-native';
 import moment from 'moment';
 import md5 from 'md5';
 import i18n from 'i18n-js';
@@ -45,9 +46,10 @@ export default function CryptoName({
 
   return (
     <Wrap noScroll titleView={<Header title={i18n.t('t20')} step={2} goBack />}>
-      <Input ref={refName} style={base.w1} placeholder={i18n.t('t21')} />
+      <Input ref={refName} style={base.w2} placeholder={i18n.t('t21')} />
+
       <Button
-        style={base.w1}
+        style={base.w2}
         title={i18n.t('t22')}
         color="#009F06"
         onPress={done}

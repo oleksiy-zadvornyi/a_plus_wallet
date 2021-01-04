@@ -8,6 +8,7 @@ export const base = StyleSheet.create({
   },
   w1: {
     alignItems: 'center',
+    margin: 0,
   },
   w2: {
     width: wp(100),
@@ -31,6 +32,9 @@ export const base = StyleSheet.create({
     backgroundColor: '#C4C4C4',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  w5: {
+    marginBottom: dw(20),
   },
   t1: {
     flex: 1,

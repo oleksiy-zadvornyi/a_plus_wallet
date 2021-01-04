@@ -18,7 +18,11 @@ export const swap = require('./direction/swap.png');
 export const arrowRight = require('./direction/arrow_right.png');
 export const arrowUp = require('./direction/arrow_up.png');
 
-export const flagRussia = require('./direction/flag_russia.png');
+export const ru = require('./direction/ru.png');
+export const en = require('./direction/en.png');
+export const it = require('./direction/it.png');
+export const sk = require('./direction/sk.png');
+export const fr = require('./direction/fr.png');
 
 export const coinPiles = require('./direction/coin_piles.png');
 export const touch = require('./direction/touch.png');
@@ -34,8 +38,9 @@ export const light = require('./direction/light.png');
 
 export const BTC = require('./direction/btc.png');
 export const ETH = require('./direction/eth.png');
-export const xrp = require('./direction/xrp.png');
-export const usdt = require('./direction/usdt.png');
+export const ISA = require('./direction/isa.png');
+export const USDT = require('./direction/usdt.png');
+export const SFC = require('./direction/sfc.png');
 
 export const summary = require('./direction/summary.png');
 export const wallets = require('./direction/wallets.png');

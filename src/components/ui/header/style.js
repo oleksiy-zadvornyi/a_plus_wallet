@@ -16,7 +16,7 @@ export const base = StyleSheet.create({
     alignItems: 'center',
   },
   t1: {
-    paddingVertical: dw(12),
+    paddingBottom: dw(12),
     fontFamily: 'Poppins',
     fontSize: dw(20),
     fontWeight: '600',

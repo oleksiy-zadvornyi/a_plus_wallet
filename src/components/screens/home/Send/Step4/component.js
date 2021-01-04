@@ -48,7 +48,7 @@ export default function Step4({access_token, showNI}) {
         navigation.navigate('Portfolio', {props: null});
         setTimeout(() => {
           Alert.alert('', i18n.t('t45'));
-        }, 1000);
+        });
       })
       .catch((e) => console.log(e.response))
       .finally(() => showNI(false));

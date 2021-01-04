@@ -6,9 +6,8 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/logo.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#000000",
+      "image": "./assets/logo.png"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,10 +23,8 @@
     },
     "android": {
       "package": "com.sarnado.apluswallet",
-      "versionCode": 1
-    },
-    "androidStatusBar": {
-      "translucent": false
+      "versionCode": 5,
+      "permissions": ["CAMERA"]
     }
   }
 }

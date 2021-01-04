@@ -3,6 +3,7 @@ import {Text, View} from 'react-native';
 import Image from 'react-native-scalable-image';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {LinearGradient} from 'expo-linear-gradient';
+import {useNavigation} from '@react-navigation/native';
 
 // Helpers
 import * as Images from 'helpers/images';
@@ -13,6 +14,7 @@ import {base} from './style';
 
 export default function Header() {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
 
   return (
     <View style={base.w1}>
@@ -33,7 +35,11 @@ export default function Header() {
         </View>
 
         <View style={base.w4}>
-          <Image source={Images.cross} width={dw(30)} />
+          <Image
+            source={Images.cross}
+            width={dw(30)}
+            onPress={navigation.goBack}
+          />
         </View>
       </LinearGradient>
     </View>
