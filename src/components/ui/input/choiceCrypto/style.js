@@ -11,6 +11,8 @@ export const base = StyleSheet.create({
     alignItems: 'center',
     width: wp(100),
     paddingHorizontal: dw(24),
+    backgroundColor: '#313c5c',
+    marginBottom: dw(10),
   },
   w2: {
     flex: 1,
@@ -19,7 +21,7 @@ export const base = StyleSheet.create({
     fontWeight: '400',
     lineHeight: dw(16),
     color: 'white',
-    paddingVertical: dw(16),
+    paddingVertical: dw(18),
     paddingHorizontal: dw(23),
   },
   w3: {

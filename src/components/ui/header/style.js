@@ -14,9 +14,10 @@ export const base = StyleSheet.create({
   w2: {
     width: wp(100),
     alignItems: 'center',
+    paddingHorizontal: dw(16),
+    paddingVertical: dw(12),
   },
   t1: {
-    paddingBottom: dw(12),
     fontFamily: 'Poppins',
     fontSize: dw(20),
     fontWeight: '600',

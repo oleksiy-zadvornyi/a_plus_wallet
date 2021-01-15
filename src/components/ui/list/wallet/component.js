@@ -8,7 +8,14 @@ import Item from 'item/wallet';
 import Button from 'button';
 
 // Helpers
-import {sortByAZ, sortByZA, sortByMaxBalance, sortByMinBalance} from 'helpers';
+import {
+  sortByAZ,
+  sortByZA,
+  sortByCurrencyAZ,
+  sortByCurrencyZA,
+  sortByMaxBalance,
+  sortByMinBalance,
+} from 'helpers';
 
 // Style
 import {base} from './style';
@@ -34,11 +41,23 @@ export default function List({account, emptyAccount, filter}) {
       }
       case 2: {
         if (emptyAccount) {
+          return account.filter((e) => e.balance > 0).sort(sortByCurrencyAZ);
+        }
+        return account.sort(sortByCurrencyAZ);
+      }
+      case 3: {
+        if (emptyAccount) {
+          return account.filter((e) => e.balance > 0).sort(sortByCurrencyZA);
+        }
+        return account.sort(sortByCurrencyZA);
+      }
+      case 4: {
+        if (emptyAccount) {
           return account.filter((e) => e.balance > 0).sort(sortByMaxBalance);
         }
         return account.sort(sortByMaxBalance);
       }
-      case 3: {
+      case 5: {
         if (emptyAccount) {
           return account.filter((e) => e.balance > 0).sort(sortByMinBalance);
         }

@@ -41,7 +41,7 @@ export default class Input extends React.Component {
           ref={this.ref}
           style={base.w2}
           placeholder={placeholder}
-          placeholderTextColor="#BAC1CF"
+          placeholderTextColor="#343842"
           keyboardType={keyboardType || 'default'}
           returnKeyType={returnKeyType || 'done'}
           autoCapitalize={autoCapitalize || 'sentences'}

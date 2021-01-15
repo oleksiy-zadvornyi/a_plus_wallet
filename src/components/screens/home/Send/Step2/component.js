@@ -57,6 +57,15 @@ export default function Step2({showToast}) {
       </View>
       <Input ref={refAddress} value={address} placeholder={i18n.t('t40')} />
       <View style={base.flex} />
+      <Text style={base.t2}>Обратите внимание!</Text>
+      <View style={base.w4}>
+        <Text style={base.t3}>
+          Вы совершаете вывод средств. В случае отправки средств по ошибочному
+          адресу, они никогда не будут возмещены вам обратно. Внимательно
+          проверяйте адрес получателя перед отправкой.
+        </Text>
+      </View>
+      <View style={base.flex} />
       <Button
         style={base.w3}
         title={i18n.t('t41')}

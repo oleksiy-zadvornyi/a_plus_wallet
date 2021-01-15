@@ -1,5 +1,7 @@
 const initialState = {
   balance: [],
+  pin: '',
+  useTouchId: false,
 };
 
 export default function initReducer(state = initialState, action) {
@@ -19,6 +21,12 @@ export default function initReducer(state = initialState, action) {
     }
     case 'reduceBalance': {
       return {...state, balance: action.data};
+    }
+    case 'reducePin': {
+      return {...state, pin: action.data};
+    }
+    case 'reduceUseTouchId': {
+      return {...state, useTouchId: action.data};
     }
     case 'fetchLogout': {
       return initialState;

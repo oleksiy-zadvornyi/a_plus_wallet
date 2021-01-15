@@ -17,7 +17,7 @@ export const base = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: dw(5),
     paddingHorizontal: dw(22),
-    color: '#BAC1CF',
+    color: '#343842',
   },
 });
 

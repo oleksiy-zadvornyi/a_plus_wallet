@@ -75,7 +75,7 @@ function Chart({wallet, user, cryptoWallets}) {
   }, [wallet, scale, cryptoCurrency]);
 
   function getData() {
-    const labels = data.map((e) => moment(e.period).format('D.M'));
+    const labels = data.map((e) => moment(e.period).format('DD.MM'));
     const datasets = [
       {
         data: data.map((e) => e.balanceCurrencie),

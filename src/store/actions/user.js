@@ -45,3 +45,24 @@ export function fetchLogout() {
     type: 'fetchLogout',
   };
 }
+
+export function reducePin(data) {
+  return {
+    type: 'reducePin',
+    data,
+  };
+}
+
+export function reduceUseTouchId(data) {
+  return {
+    type: 'reduceUseTouchId',
+    data,
+  };
+}
+
+export function reduceUsePin(data) {
+  return {
+    type: 'reduceUsePin',
+    data,
+  };
+}

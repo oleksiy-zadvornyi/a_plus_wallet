@@ -1,11 +1,11 @@
 import React from 'react';
 import {TextInput, View} from 'react-native';
 import Image from 'react-native-scalable-image';
-import dw from 'hooks/useDesignWidth';
 import i18n from 'i18n-js';
 
 // Helpers
 import * as Images from 'helpers/images';
+import dw from 'hooks/useDesignWidth';
 
 import {base} from './style';
 

@@ -18,11 +18,12 @@ export default function Header() {
 
   return (
     <View style={base.w1}>
+      <View style={{height: insets.top, backgroundColor: 'white'}} />
       <LinearGradient
         start={{x: 0, y: 1}}
         end={{x: 1, y: 0}}
         colors={['#1D2741', '#405896']}
-        style={[base.w2, {paddingTop: dw(12) + insets.top}]}>
+        style={base.w2}>
         <View style={base.w3} />
 
         <View style={base.w5}>

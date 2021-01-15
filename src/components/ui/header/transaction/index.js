@@ -24,7 +24,8 @@ export default function Header({discriminator, confirmations, amount, node}) {
   }
 
   return (
-    <View style={[base.w1, {paddingTop: dw(8) + insets.top}]}>
+    <View style={base.w1}>
+      <View style={{height: insets.top, backgroundColor: 'white'}} />
       <View style={base.w2}>
         <View style={base.w3}>
           <Image

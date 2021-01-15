@@ -22,6 +22,11 @@ export const base = StyleSheet.create({
     marginVertical: dw(15),
     paddingHorizontal: dw(15),
   },
+  w4: {
+    borderWidth: 1,
+    borderColor: '#C4C4C4',
+    margin: dw(10),
+  },
   t1: {
     fontFamily: 'Roboto',
     fontWeight: '700',
@@ -29,6 +34,21 @@ export const base = StyleSheet.create({
     lineHeight: dw(21),
     color: 'white',
     paddingHorizontal: dw(10),
+  },
+  t2: {
+    fontFamily: 'Roboto',
+    fontWeight: '700',
+    fontSize: dw(18),
+    lineHeight: dw(21),
+    color: 'white',
+  },
+  t3: {
+    fontFamily: 'Roboto',
+    fontWeight: '700',
+    fontSize: dw(16),
+    lineHeight: dw(21),
+    color: 'white',
+    padding: dw(10),
   },
 });
 

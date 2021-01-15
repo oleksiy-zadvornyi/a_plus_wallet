@@ -40,7 +40,7 @@ export default function Login({fetchLogin, showToast}) {
     <Wrap titleView={<Header title={i18n.t('t3')} />}>
       <View style={base.flex} />
       <View style={base.w1}>
-        <Image source={Images.logo} height={dw(61)} />
+        <Image source={Images.logo} height={dw(100)} />
         <Text style={base.t1}>{i18n.t('t4')}</Text>
         <Input
           ref={refLogin}

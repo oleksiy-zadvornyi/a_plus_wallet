@@ -19,24 +19,26 @@ export default function Header() {
 
   return (
     <View style={base.w1}>
+      <View style={{height: insets.top, backgroundColor: 'white'}} />
       <LinearGradient
         start={{x: 0, y: 1}}
         end={{x: 1, y: 0}}
         colors={['#1D2741', '#405896']}
-        style={[base.w2, {paddingTop: dw(12) + insets.top}]}>
-        <View style={base.w3} />
+        style={base.w2}>
+        <View style={base.w3}>
+          {navigation.canGoBack() && (
+            <Image
+              source={Images.arrowLeft}
+              height={dw(35)}
+              onPress={navigation.goBack}
+            />
+          )}
+        </View>
 
         <View style={base.w5}>
-          <Text style={base.t1}>{i18n.t('t69')}</Text>
-          <Text style={base.t2}>{i18n.t('t70')}</Text>
+          <Text style={base.t1}>{i18n.t('t70')}</Text>
         </View>
-        <View style={base.w4}>
-          <Image
-            source={Images.cross}
-            width={dw(30)}
-            onPress={navigation.goBack}
-          />
-        </View>
+        <View style={base.w4} />
       </LinearGradient>
     </View>
   );

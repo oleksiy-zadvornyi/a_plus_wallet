@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View, Animated, StyleSheet} from 'react-native';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import {View, Animated} from 'react-native';
 
+// Helpers
 import * as Images from 'helpers/images';
+
+// Styles
+import {base} from './style';
 
 export default function Preloader({onPreloader}) {
   const [opacity] = useState(new Animated.Value(0));
@@ -17,12 +20,12 @@ export default function Preloader({onPreloader}) {
   });
 
   return (
-    <View style={styles.w1}>
+    <View style={base.w1}>
       <Animated.Image
         source={Images.logo}
         resizeMode="contain"
         style={[
-          styles.w2,
+          base.w2,
           {
             opacity: opacity,
           },
@@ -31,16 +34,3 @@ export default function Preloader({onPreloader}) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  w1: {
-    flex: 1,
-    backgroundColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  w2: {
-    flex: 1,
-    width: wp(80),
-  },
-});

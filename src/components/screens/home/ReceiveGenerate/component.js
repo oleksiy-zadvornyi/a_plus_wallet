@@ -75,7 +75,8 @@ export default function ReceiveGenerate(props) {
             <QRCode size={wp(60)} value={hash.address} />
           </View>
         )}
-        <Input value={hash && hash.address} />
+        <View style={base.flex} />
+        <Input value={hash && hash.address} onPressCopy={onPressClipboard} />
         <View style={base.w2}>
           <Button
             style={base.w3}
@@ -84,19 +85,17 @@ export default function ReceiveGenerate(props) {
             onPress={depositCreate}
           />
           <View style={base.w4} />
-          <Button
-            title={i18n.t('t34')}
-            color="#1B48BC"
-            onPress={onPressClipboard}
-          />
+          <Button title={i18n.t('t35')} color="#1B48BC" onPress={onShare} />
         </View>
-        <ButtonIcon
+        <View style={base.flex} />
+        <View style={base.flex} />
+        {/* <ButtonIcon
           style={base.w6}
           title={i18n.t('t35')}
           color="#009F06"
           icon={Images.arrowUp}
           onPress={onShare}
-        />
+        /> */}
       </View>
     </Wrap>
   );

@@ -14,6 +14,7 @@ export const base = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: dw(8),
+    paddingTop: dw(8),
   },
   w3: {
     width: dw(40),

@@ -23,6 +23,8 @@ export default function Filter({
   const filters = [
     `${i18n.t('t90')} A-Z`,
     `${i18n.t('t90')} Z-A`,
+    `${i18n.t('t112')} A-Z`,
+    `${i18n.t('t112')} Z-A`,
     i18n.t('t91'),
     i18n.t('t92'),
   ];

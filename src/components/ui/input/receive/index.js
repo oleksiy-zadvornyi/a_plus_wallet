@@ -1,6 +1,12 @@
 import React from 'react';
-import {TextInput} from 'react-native';
+import {View, TextInput} from 'react-native';
+import Image from 'react-native-scalable-image';
 
+// Helpers
+import * as Images from 'helpers/images';
+import dw from 'hooks/useDesignWidth';
+
+// Style
 import {base} from './style';
 
 export default class Input extends React.Component {
@@ -24,6 +30,7 @@ export default class Input extends React.Component {
 
   render() {
     const {
+      style,
       value,
       placeholder,
       keyboardType,
@@ -31,23 +38,27 @@ export default class Input extends React.Component {
       autoCapitalize,
       secureTextEntry,
       onSubmitEditing,
+      onPressCopy,
     } = this.props;
 
     return (
-      <TextInput
-        ref={this.ref}
-        style={base.w1}
-        editable={false}
-        placeholder={placeholder}
-        placeholderTextColor="#BAC1CF"
-        keyboardType={keyboardType || 'default'}
-        returnKeyType={returnKeyType || 'done'}
-        autoCapitalize={autoCapitalize || 'sentences'}
-        secureTextEntry={secureTextEntry}
-        value={value}
-        onChangeText={this.onChangeText}
-        onSubmitEditing={onSubmitEditing}
-      />
+      <View style={[base.w1, style]}>
+        <TextInput
+          ref={this.ref}
+          style={base.w2}
+          editable={false}
+          placeholder={placeholder}
+          placeholderTextColor="#BAC1CF"
+          keyboardType={keyboardType || 'default'}
+          returnKeyType={returnKeyType || 'done'}
+          autoCapitalize={autoCapitalize || 'sentences'}
+          secureTextEntry={secureTextEntry}
+          value={value}
+          onChangeText={this.onChangeText}
+          onSubmitEditing={onSubmitEditing}
+        />
+        <Image source={Images.copy} width={dw(23)} onPress={onPressCopy} />
+      </View>
     );
   }
 }

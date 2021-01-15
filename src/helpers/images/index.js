@@ -17,6 +17,8 @@ export const cart = require('./direction/cart.png');
 export const swap = require('./direction/swap.png');
 export const arrowRight = require('./direction/arrow_right.png');
 export const arrowUp = require('./direction/arrow_up.png');
+export const copy = require('./direction/copy.png');
+export const backspace = require('./direction/backspace.png');
 
 export const ru = require('./direction/ru.png');
 export const en = require('./direction/en.png');

@@ -58,6 +58,24 @@ export function sortByZA(a, b) {
   }
   return 0;
 }
+export function sortByCurrencyAZ(a, b) {
+  if (a.node > b.node) {
+    return 1;
+  }
+  if (a.node < b.node) {
+    return -1;
+  }
+  return 0;
+}
+export function sortByCurrencyZA(a, b) {
+  if (a.node > b.node) {
+    return -1;
+  }
+  if (a.node < b.node) {
+    return 1;
+  }
+  return 0;
+}
 export function sortByMaxBalance(a, b) {
   if (a.balance > b.balance) {
     return 1;

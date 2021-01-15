@@ -100,13 +100,6 @@ function Home({
       .withUrl(`${URL}/notificationuserhub?userId=${userName}`)
       .build();
 
-    // const connection = new signalR.HubConnectionBuilder()
-    //   .withUrl(`${URL}/notificationuserhub?userId=${userName}`, {
-    //     transport: signalR.HttpTransportType.LongPolling,
-    //   })
-    //   .withAutomaticReconnect([0, 3000, 5000, 10000, 15000, 30000])
-    //   .build();
-
     connection.on('ReloadBalance', () => {
       getTransactionAll({access_token});
       getAccountAll({access_token});

@@ -81,7 +81,7 @@ function List({account}) {
 
 function mapStateToProps(state) {
   return {
-    account: state.account.filter((e) => e.isActive && e.balance > 0),
+    account: state.account.filter((e) => e.isActive),
   };
 }
 

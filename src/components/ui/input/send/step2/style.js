@@ -7,14 +7,17 @@ export const base = StyleSheet.create({
     flex: 1,
   },
   w1: {
-    width: wp(100),
+    width: wp(100) - dw(32),
     fontFamily: 'Roboto',
     fontSize: dw(18),
     fontWeight: '400',
     lineHeight: dw(21),
     color: '#7A7A7A',
-    padding: dw(21),
+    paddingVertical: dw(21),
+    paddingHorizontal: dw(5),
     marginTop: dw(20),
+    borderBottomColor: '#BAC1CF',
+    borderBottomWidth: 1,
   },
 });
 

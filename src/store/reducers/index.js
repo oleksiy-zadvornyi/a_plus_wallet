@@ -8,6 +8,7 @@ import transactions from './transactions';
 import account from './account';
 import cryptoWallets from './cryptoWallets';
 import settings from './settings';
+import pin from './pin';
 
 export default combineReducers({
   networkIndicator,
@@ -18,4 +19,5 @@ export default combineReducers({
   account,
   cryptoWallets,
   settings,
+  pin,
 });

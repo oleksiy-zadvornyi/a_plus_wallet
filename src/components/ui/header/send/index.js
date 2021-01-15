@@ -19,16 +19,17 @@ export default function Header({step, title}) {
 
   return (
     <View style={base.w1}>
+      <View style={{height: insets.top, backgroundColor: 'white'}} />
       <LinearGradient
         start={{x: 0, y: 1}}
         end={{x: 1, y: 0}}
         colors={['#1D2741', '#405896']}
-        style={[base.w2, {paddingTop: dw(12) + insets.top}]}>
+        style={base.w2}>
         <View style={base.w3}>
-          {step > 1 && (
+          {navigation.canGoBack() && (
             <Image
               source={Images.arrowLeft}
-              width={dw(30)}
+              height={dw(35)}
               onPress={navigation.goBack}
             />
           )}
@@ -40,13 +41,7 @@ export default function Header({step, title}) {
           )} 4`}</Text>
           <Text style={base.t2}>{title}</Text>
         </View>
-        <View style={base.w4}>
-          <Image
-            source={Images.cross}
-            width={dw(30)}
-            onPress={navigation.goBack}
-          />
-        </View>
+        <View style={base.w4} />
       </LinearGradient>
     </View>
   );

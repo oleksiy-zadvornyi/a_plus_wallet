@@ -83,17 +83,26 @@ export default function Profile({
           editable={false}
           placeholder={i18n.t('t13')}
           keyboardType="email-address"
-          button={!user.isEmailVerified}
-          buttonTitle={i18n.t('t25')}
-          buttonPress={onPressVerifyEmail}
+          // button={!user.isEmailVerified}
+          // buttonTitle={i18n.t('t25')}
+          // buttonPress={onPressVerifyEmail}
         />
-        <View style={base.w2} />
+        {/* <View style={base.w2} />
         <Input
           ref={refPassword}
           editable={false}
           placeholder={i18n.t('t26')}
           secureTextEntry
-        />
+        /> */}
+        <View style={base.w2} />
+        {!user.isEmailVerified && (
+          <Button
+            title={i18n.t('t25')}
+            color="#009F06"
+            onPress={onPressVerifyEmail}
+          />
+        )}
+
         <View style={base.w2} />
         <Button
           title={i18n.t('t27')}
