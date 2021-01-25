@@ -24,7 +24,8 @@ export const base = StyleSheet.create({
     width: dw(40),
     height: dw(40),
     borderRadius: dw(40),
-    backgroundColor: '#009F06',
+    borderWidth: 1,
+    borderColor: '#009F06',
   },
   w4: {
     width: wp(80),
@@ -34,16 +35,16 @@ export const base = StyleSheet.create({
     paddingVertical: dw(20),
   },
   w5: {
-    width: dw(45),
-    height: dw(45),
-    borderRadius: dw(45),
+    width: dw(70),
+    height: dw(70),
+    borderRadius: dw(70),
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#232F4E',
   },
   w6: {
-    width: dw(45),
-    height: dw(45),
+    width: dw(70),
+    height: dw(70),
   },
   w7: {
     width: wp(80),
@@ -66,7 +67,7 @@ export const base = StyleSheet.create({
   t3: {
     fontFamily: 'Roboto',
     fontWeight: '100',
-    fontSize: dw(35),
+    fontSize: dw(25),
     color: 'white',
   },
 });

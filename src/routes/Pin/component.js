@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {Alert, View, Text, TouchableOpacity} from 'react-native';
 import Image from 'react-native-scalable-image';
 import * as LocalAuthentication from 'expo-local-authentication';
@@ -16,15 +16,15 @@ import dw from 'hooks/useDesignWidth';
 // Style
 import {base} from './style';
 
-export default function Pin({
-  localPin,
-  usePin,
-  reducePin,
-  reduceUseTouchId,
-  reduceUsePin,
-}) {
+export default function Pin({reducePin, reduceUseTouchId, reduceUsePin}) {
   const [pin, setPin] = useState([]);
   const [pinIndex, setPinIndex] = useState(-1);
+
+  useEffect(() => {
+    if (pin.length === 4) {
+      done();
+    }
+  }, [done, pin]);
 
   function onPressPin(numb) {
     if (pinIndex < 3) {
@@ -40,17 +40,7 @@ export default function Pin({
     }
   }
 
-  function savePin() {
-    reduceUsePin(true);
-    reducePin(pin.join(''));
-  }
-  function saveFingerprints() {
-    reduceUsePin(true);
-    reducePin(pin.join(''));
-    reduceUseTouchId(true);
-  }
-
-  async function done() {
+  const done = useCallback(async () => {
     const fingerprints = await LocalAuthentication.isEnrolledAsync();
     if (fingerprints) {
       Alert.alert(
@@ -59,19 +49,27 @@ export default function Pin({
         [
           {
             text: i18n.t('no'),
-            onPress: savePin,
+            onPress: () => {
+              reduceUsePin(true);
+              reducePin(pin.join(''));
+            },
           },
           {
             text: i18n.t('yes'),
-            onPress: saveFingerprints,
+            onPress: () => {
+              reduceUsePin(true);
+              reducePin(pin.join(''));
+              reduceUseTouchId(true);
+            },
           },
         ],
         {cancelable: false},
       );
     } else {
-      savePin();
+      reduceUsePin(true);
+      reducePin(pin.join(''));
     }
-  }
+  }, [pin, reducePin, reduceUsePin, reduceUseTouchId]);
 
   return (
     <Wrap titleView={<Header title={i18n.t('t113')} />}>
@@ -128,13 +126,13 @@ export default function Pin({
         </TouchableOpacity>
       </View>
       <View style={base.flex} />
-      <Button
+      {/* <Button
         style={base.w7}
         disabled={pin.length < 4}
         title={i18n.t('t22')}
         color="#009F06"
         onPress={done}
-      />
+      /> */}
       <View style={base.flex} />
     </Wrap>
   );

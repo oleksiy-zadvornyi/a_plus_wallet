@@ -32,6 +32,12 @@ export default function LocalPin({
     }
   }, []);
 
+  useEffect(() => {
+    if (pin.length === 4) {
+      done();
+    }
+  }, [done, pin]);
+
   async function fingerprints() {
     const fp = await LocalAuthentication.isEnrolledAsync();
     if (fp) {
@@ -64,10 +70,6 @@ export default function LocalPin({
       return;
     }
     reduceUsePin(true);
-  }
-
-  if (useTouchId) {
-    return <Wrap titleView={<Header title={i18n.t('t113')} />} />;
   }
 
   return (
@@ -125,13 +127,13 @@ export default function LocalPin({
         </TouchableOpacity>
       </View>
       <View style={base.flex} />
-      <Button
+      {/* <Button
         style={base.w7}
         disabled={pin.length < 4}
         title={i18n.t('t118')}
         color="#009F06"
         onPress={done}
-      />
+      /> */}
       <View style={base.flex} />
     </Wrap>
   );
