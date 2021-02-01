@@ -27,7 +27,11 @@ function Header({user, wallet}) {
   };
 
   const onPressSend = () => {
-    navigation.navigate('Step1');
+    if (wallet) {
+      navigation.navigate('Step2', {props: wallet});
+    } else {
+      navigation.navigate('Step1');
+    }
   };
 
   function renderBalance() {
@@ -59,7 +63,9 @@ function Header({user, wallet}) {
               <View style={base.w3}>
                 <View style={base.flex}>
                   <Text style={base.t1}>{i18n.t('t65')}</Text>
-                  <Text style={base.t2}>{user.userName}</Text>
+                  <Text style={base.t2}>
+                    {wallet ? wallet.maskName : user.userName}
+                  </Text>
                 </View>
                 {/* <View>
                 <Image source={Images.bell} width={dw(22)} />

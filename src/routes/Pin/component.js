@@ -16,9 +16,15 @@ import dw from 'hooks/useDesignWidth';
 // Style
 import {base} from './style';
 
-export default function Pin({reducePin, reduceUseTouchId, reduceUsePin}) {
+export default function Pin({
+  reducePin,
+  reduceUseTouchId,
+  reduceUsePin,
+  showToast,
+}) {
   const [pin, setPin] = useState([]);
   const [pinIndex, setPinIndex] = useState(-1);
+  const [code, setCode] = useState();
 
   useEffect(() => {
     if (pin.length === 4) {
@@ -41,40 +47,53 @@ export default function Pin({reducePin, reduceUseTouchId, reduceUsePin}) {
   }
 
   const done = useCallback(async () => {
-    const fingerprints = await LocalAuthentication.isEnrolledAsync();
-    if (fingerprints) {
-      Alert.alert(
-        i18n.t('t114'),
-        i18n.t('t115'),
-        [
-          {
-            text: i18n.t('no'),
-            onPress: () => {
-              reduceUsePin(true);
-              reducePin(pin.join(''));
-            },
-          },
-          {
-            text: i18n.t('yes'),
-            onPress: () => {
-              reduceUsePin(true);
-              reducePin(pin.join(''));
-              reduceUseTouchId(true);
-            },
-          },
-        ],
-        {cancelable: false},
-      );
-    } else {
-      reduceUsePin(true);
-      reducePin(pin.join(''));
+    if (!code) {
+      setCode(pin.join(''));
+      setPin([]);
+      setPinIndex(-1);
+      return;
     }
-  }, [pin, reducePin, reduceUsePin, reduceUseTouchId]);
+    if (code === pin.join('')) {
+      const fingerprints = await LocalAuthentication.isEnrolledAsync();
+      if (fingerprints) {
+        Alert.alert(
+          i18n.t('t114'),
+          i18n.t('t115'),
+          [
+            {
+              text: i18n.t('no'),
+              onPress: () => {
+                reduceUsePin(true);
+                reducePin(pin.join(''));
+              },
+            },
+            {
+              text: i18n.t('yes'),
+              onPress: () => {
+                reduceUsePin(true);
+                reducePin(pin.join(''));
+                reduceUseTouchId(true);
+              },
+            },
+          ],
+          {cancelable: false},
+        );
+      } else {
+        reduceUsePin(true);
+        reducePin(pin.join(''));
+      }
+    } else {
+      setCode('');
+      setPin([]);
+      setPinIndex(-1);
+      showToast(i18n.t('t10'));
+    }
+  }, [code, pin, reducePin, reduceUsePin, reduceUseTouchId, showToast]);
 
   return (
     <Wrap titleView={<Header title={i18n.t('t113')} />}>
       <View style={base.flex} />
-      <Text style={base.t1}>{i18n.t('t116')}</Text>
+      <Text style={base.t1}>{!code ? i18n.t('t116') : i18n.t('t120')}</Text>
       <View style={base.flex} />
       <View style={base.w1}>
         <View style={pin[0] ? base.w3 : base.w2} />

@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import i18n from 'i18n-js';
 
 // Components
@@ -7,28 +7,37 @@ import Wrap from 'base/Wrap';
 import Header from 'header/profile';
 import Input from 'input/profile';
 import Button from 'button';
-import ModalPassword from 'modal/profile';
+// import ModalPassword from 'modal/profile';
+
+// Api
+import {getUserChangePassword} from 'store/api/user';
 
 // Style
 import {base} from './style';
 
 export default function Profile({
   user,
+  access_token,
   // setFirstName,
   // setSecondName,
-  fetchUserAcceptEmail,
+  // fetchUserAcceptEmail,
   fetchLogout,
+  showNI,
+  showToast,
 }) {
   // const refName = useRef();
   // const refLastName = useRef();
   const refEmail = useRef();
-  const refPassword = useRef();
+  // const refPassword = useRef();
   // const refPhone = useRef();
   // const refBirthday = useRef();
   // const refCountry = useRef();
   // const refCity = useRef();
   // const refStreet = useRef();
-  const [show, setShow] = useState(false);
+  const refOldPassword = useRef();
+  const refNewPassword = useRef();
+  const refNewRePassword = useRef();
+  // const [show, setShow] = useState(false);
 
   // function changeFirstName(text) {
   //   const {access_token} = user;
@@ -42,16 +51,48 @@ export default function Profile({
   //   setSecondName({access_token, query});
   // }
 
-  const onPressVerifyEmail = () => {
-    const query = {
-      token: user.access_token,
-    };
-    fetchUserAcceptEmail({
-      access_token: user.access_token,
-      query,
-    });
-  };
+  // const onPressVerifyEmail = () => {
+  //   const query = {
+  //     token: user.access_token,
+  //   };
+  //   fetchUserAcceptEmail({
+  //     access_token: user.access_token,
+  //     query,
+  //   });
+  // };
   // const onPressVerifyPhone = () => {};
+
+  function onPress() {
+    const oldPassword = refOldPassword.current.getValue();
+    if (oldPassword.length === 0) {
+      showToast(i18n.t('t84'));
+      return;
+    }
+    const newPassword = refNewPassword.current.getValue();
+    if (newPassword.length === 0) {
+      showToast(i18n.t('t85'));
+      return;
+    }
+    const newRePassword = refNewRePassword.current.getValue();
+    if (newPassword !== newRePassword) {
+      showToast(i18n.t('10'));
+      return;
+    }
+    showNI(true);
+    const query = {
+      oldPassword,
+      newPassword,
+    };
+    getUserChangePassword({access_token, query})
+      .then(() => {
+        refOldPassword.current.clear();
+        refNewPassword.current.clear();
+        refNewRePassword.current.clear();
+        showToast(i18n.t('t86'));
+      })
+      .catch((e) => showToast(e.response.data.errorText))
+      .finally(() => showNI(false));
+  }
 
   return (
     <Wrap titleView={<Header />}>
@@ -94,21 +135,34 @@ export default function Profile({
           placeholder={i18n.t('t26')}
           secureTextEntry
         /> */}
-        <View style={base.w2} />
+        {/* <View style={base.w2} />
         {!user.isEmailVerified && (
           <Button
             title={i18n.t('t25')}
             color="#009F06"
             onPress={onPressVerifyEmail}
           />
-        )}
-
-        <View style={base.w2} />
-        <Button
-          title={i18n.t('t27')}
-          color="#009F06"
-          onPress={() => setShow(true)}
+        )} */}
+        <Text style={base.t2}>{i18n.t('t87')}</Text>
+        <Input
+          ref={refOldPassword}
+          placeholder={i18n.t('t88')}
+          secureTextEntry
         />
+        <View style={base.w2} />
+        <Input
+          ref={refNewPassword}
+          placeholder={i18n.t('t89')}
+          secureTextEntry
+        />
+        <View style={base.w2} />
+        <Input
+          ref={refNewRePassword}
+          placeholder={i18n.t('t119')}
+          secureTextEntry
+        />
+        <View style={base.w2} />
+        <Button title={i18n.t('t27')} color="#009F06" onPress={onPress} />
 
         {/* <Text style={base.t2}>Данные</Text>
         <Input
@@ -137,7 +191,7 @@ export default function Profile({
         <View style={base.w2} />
         <Button title={i18n.t('t28')} color="red" onPress={fetchLogout} />
         <View style={base.w2} />
-        <ModalPassword isVisible={show} onPressClose={() => setShow(false)} />
+        {/* <ModalPassword isVisible={show} onPressClose={() => setShow(false)} /> */}
       </View>
     </Wrap>
   );

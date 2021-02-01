@@ -35,6 +35,14 @@ export default function Settings({locale, emptyAccount, reduceEmptyAccount}) {
         />
         <View style={base.w2} />
         <Item
+          icon={Images.barChart}
+          title={i18n.t('t54')}
+          type="text"
+          data={['Binance']}
+          invisible
+        />
+        <View style={base.w2} />
+        <Item
           icon={Images.touch}
           title="Разблокировать с TouchID"
           type="switch"
@@ -48,21 +56,13 @@ export default function Settings({locale, emptyAccount, reduceEmptyAccount}) {
           value={emptyAccount}
           onValueChange={onValueChange}
         />
-        <View style={base.w2} />
-        <Item
-          icon={Images.barChart}
-          title={i18n.t('t54')}
-          type="text"
-          data={['Binance']}
-          invisible
-        />
-        <View style={base.w2} />
+        {/* <View style={base.w2} />
         <Item
           icon={Images.themeLightDark}
           title="Тема оформления"
           type="switch"
           invisible
-        />
+        /> */}
         <View style={base.w2} />
         <Item
           icon={Images.language}

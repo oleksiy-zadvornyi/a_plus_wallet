@@ -26,7 +26,9 @@ export default class Input extends React.Component {
   onChange = () => {
     const {value, onSubmitEditing} = this.props;
     if (value !== this.state.value) {
-      onSubmitEditing(this.state.value);
+      if (onSubmitEditing) {
+        onSubmitEditing(this.state.value);
+      }
     }
   };
 
@@ -34,9 +36,13 @@ export default class Input extends React.Component {
 
   ref = (r) => (this.input = r);
 
-  getValue() {
+  getValue = () => {
     return this.state.value;
-  }
+  };
+
+  clear = () => {
+    this.setState({value: ''});
+  };
 
   render() {
     const {value} = this.state;

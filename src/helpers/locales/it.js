@@ -12,8 +12,8 @@ export default {
   t2: 'Inserire la password',
   t3: 'Entrata',
   t4: 'Accedi se sei registrato',
-  t5: 'il tuo login',
-  t6: 'la tua password',
+  t5: 'Il tuo login',
+  t6: 'La tua password',
   t7: 'Inviare',
   t8: 'Se non hai ancora un account, passa a quello facile',
   t9: 'registrazione',
@@ -127,4 +127,6 @@ export default {
   t116: 'Создайте свой пин код для входа в приложение',
   t117: 'Введите свой пин код для входа в приложение',
   t118: 'Войти',
+  t119: 'Повторите новый пароль',
+  t120: 'Повторите свой пин код для входа в приложение',
 };
